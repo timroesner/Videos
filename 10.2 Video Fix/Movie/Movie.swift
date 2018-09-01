@@ -11,6 +11,7 @@ import AVKit
 import UIKit
 
 struct Movie {
+    var url: URL!
     var title = ""
     var artwork = UIImage(named: "MissingArtworkMovies.png")
     var duration = 0
@@ -22,6 +23,7 @@ struct Movie {
         var result = [Movie]()
         for url in collection {
             var movie = Movie()
+            movie.url = url
             let asset = AVAsset(url: url)
             let metadata = asset.metadata(forFormat: AVMetadataFormatiTunesMetadata)
             
