@@ -9,6 +9,7 @@
 import AVFoundation
 import AVKit
 import UIKit
+import SWXMLHash
 
 struct Movie {
     var url: URL!
@@ -18,6 +19,9 @@ struct Movie {
     var year = ""
     var genres = ""
     var description = ""
+    var cast = [String]()
+    var directors = [String]()
+    var screenwriters = [String]()
     
     func mapURLs(collection:[URL]) -> [Movie] {
         var result = [Movie]()
@@ -63,6 +67,19 @@ struct Movie {
                 movie.genres = data
             }
             
+            let extendedInfo = AVMetadataItem.metadataItems(from: metadata, withKey: "com.apple.iTunes.iTunMOVI", keySpace: "itlk")
+            if let first = extendedInfo.first {
+                do {
+                    let plistData = try PropertyListSerialization.propertyList(from: first.stringValue?.data(using: .utf8) ?? Data(), options: .mutableContainersAndLeaves, format: nil) as! [String:AnyObject]
+                    
+                    movie.cast = plistData["cast"].map({$0.value(forKey: "name")}) as? [String] ?? []
+                    movie.directors = plistData["directors"].map({$0.value(forKey: "name")}) as? [String] ?? []
+                    movie.screenwriters = plistData["screenwriters"].map({$0.value(forKey: "name")}) as? [String] ?? []
+                    
+                } catch {
+                    print("Error reading plist: \(error.localizedDescription)")
+                }
+            }
             result.append(movie)
         }
         return result
