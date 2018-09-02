@@ -17,6 +17,9 @@ class MoviesDetail: UIViewController, AVPlayerViewControllerDelegate, UINavigati
     @IBOutlet var cover: UIImageView!
     @IBOutlet var subtitleLbl: UILabel!
     @IBOutlet var descLbl: UILabel!
+    @IBOutlet var castLbl: UILabel!
+    @IBOutlet var direcLbl: UILabel!
+    @IBOutlet var screenwrLbl: UILabel!
     var currentMovie = Movie()
     
     override func viewDidLoad() {
@@ -29,6 +32,24 @@ class MoviesDetail: UIViewController, AVPlayerViewControllerDelegate, UINavigati
         cover.image = currentMovie.artwork
         subtitleLbl.text = "\(currentMovie.duration)m    \(currentMovie.year)    \(currentMovie.genres)"
         descLbl.text = currentMovie.description
+        castLbl.attributedText = createParagraphs(array: currentMovie.cast, headline: "Cast")
+        direcLbl.attributedText = createParagraphs(array: currentMovie.directors, headline: "Directors")
+        screenwrLbl.attributedText = createParagraphs(array: currentMovie.screenwriters, headline: "Screenwriters")
+    }
+    
+    func createParagraphs(array:[String], headline:String) -> NSMutableAttributedString {
+        let result = NSMutableAttributedString(string: "", attributes: nil)
+        if(!array.isEmpty) {
+            result.append(NSAttributedString(string: headline.uppercased()+"\n", attributes: [NSFontAttributeName: UIFont.boldSystemFont(ofSize: 17.0), NSForegroundColorAttributeName: UIColor.black]))
+            
+            var itemsString = ""
+            for item in array {
+                itemsString += "\(item)\n"
+            }
+            result.append(NSAttributedString(string: itemsString, attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 20.0), NSForegroundColorAttributeName: UIColor.lightGray]))
+        }
+        print(result)
+        return result
     }
     
     @IBAction func playBtn (_ Sender: UIButton) {
