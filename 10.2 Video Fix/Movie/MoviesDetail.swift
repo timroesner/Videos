@@ -48,7 +48,6 @@ class MoviesDetail: UIViewController, AVPlayerViewControllerDelegate, UINavigati
             }
             result.append(NSAttributedString(string: itemsString, attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 20.0), NSForegroundColorAttributeName: UIColor.lightGray]))
         }
-        print(result)
         return result
     }
     
