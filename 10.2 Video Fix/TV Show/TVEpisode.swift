@@ -10,7 +10,7 @@ import UIKit
 
 struct TVEpisode {
     var title = ""
-    var number = ""
+    var number = 0
     var url: URL!
     var duration = 0
 }

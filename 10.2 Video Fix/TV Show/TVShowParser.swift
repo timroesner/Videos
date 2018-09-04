@@ -52,8 +52,8 @@ extension TVShow {
                     
                     // Episode number
                     let trackItems = AVMetadataItem.metadataItems(from: metadata, withKey: "tves", keySpace: "itsk")
-                    if let data = trackItems.first, let track = data.stringValue {
-                        episode.number = track
+                    if let data = trackItems.first, let track = data.numberValue {
+                        episode.number = track.intValue
                     }
                     show.episodes.append(episode)
                 }
