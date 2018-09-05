@@ -10,9 +10,7 @@ import UIKit
 import AVFoundation
 import AVKit
 
-var playerController = AVPlayerViewController()
-
-class MoviesDetail: UIViewController, AVPlayerViewControllerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+class MoviesDetail: UIViewController {
     
     @IBOutlet var cover: UIImageView!
     @IBOutlet var subtitleLbl: UILabel!
@@ -52,12 +50,7 @@ class MoviesDetail: UIViewController, AVPlayerViewControllerDelegate, UINavigati
     }
     
     @IBAction func playBtn (_ Sender: UIButton) {
-        let player = AVPlayer(url: currentMovie.url)
-        playerController = AVPlayerViewController()
-        playerController.player = player
-        present(playerController, animated: true) {
-            playerController.player!.play()
-        }
+        self.presentPlayer(withURL: currentMovie.url)
     }
     
     @IBAction func trashBtn() {
@@ -80,23 +73,5 @@ class MoviesDetail: UIViewController, AVPlayerViewControllerDelegate, UINavigati
         alertController.addAction(deleteAction)
         alertController.addAction(cancelAction)
         self.present(alertController, animated: true, completion: nil)
-    }
-
-    func playerViewController(_ playerViewController: AVPlayerViewController,
-                              restoreUserInterfaceForPictureInPictureStopWithCompletionHandler
-        completionHandler: @escaping (Bool) -> Void) {
-
-        let currentViewController = navigationController?.visibleViewController
-
-        if currentViewController != playerViewController {
-            if let topViewController =
-                navigationController?.topViewController {
-
-                topViewController.present(playerViewController,
-                                                        animated: true, completion: {()
-                                                            completionHandler(true)
-                })
-            }
-        }
     }
 }

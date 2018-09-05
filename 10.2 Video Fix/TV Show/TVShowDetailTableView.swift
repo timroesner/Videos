@@ -65,11 +65,6 @@ extension TVShowDetail: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
         tableView.deselectRow(at: indexPath, animated: true)
-        let player = AVPlayer(url: currentShow.episodes[indexPath.row].url)
-        let playerController = AVPlayerViewController()
-        playerController.player = player
-        present(playerController, animated: true) {
-            player.play()
-        }
+        self.presentPlayer(withURL: currentShow.episodes[indexPath.row].url)
     }
 }

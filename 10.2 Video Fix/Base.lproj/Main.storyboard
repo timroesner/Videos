@@ -15,7 +15,7 @@
         <!--Movies-->
         <scene sceneID="hNz-n2-bh7">
             <objects>
-                <viewController title="Movies" id="9pv-A4-QxB" customClass="MovieOverviewController" customModule="_0_2_Video_Fix" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="moviesOverview" title="Movies" id="9pv-A4-QxB" customClass="MovieOverviewController" customModule="_0_2_Video_Fix" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ia1-K6-d13"/>
                         <viewControllerLayoutGuide type="bottom" id="4ug-Mw-9AY"/>
