@@ -10,9 +10,6 @@ import UIKit
 import AVFoundation
 import AVKit
 
-let screenWidth = UIScreen.main.bounds.width
-let screenHeight = UIScreen.main.bounds.height
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 

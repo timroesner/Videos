@@ -11,10 +11,11 @@ import UIKit
 extension TVShowOverviewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         var w: CGFloat = 0
+        let screenWidth = UIScreen.main.bounds.width
         if UIApplication.shared.statusBarOrientation.isLandscape {
-            w = (UIScreen.main.bounds.width-72)/5
+            w = (screenWidth-72)/5
         } else {
-            w = (UIScreen.main.bounds.width-48)/3
+            w = (screenWidth-48)/3
         }
         let h = w*1.14
         return CGSize(width: w, height: h)
