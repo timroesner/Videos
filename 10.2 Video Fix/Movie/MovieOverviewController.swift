@@ -12,6 +12,7 @@ class MovieOverviewController: UIViewController {
     
     @IBOutlet var collectionView: UICollectionView!
     var movies = [Movie]()
+    var finishedLoading = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,17 +28,10 @@ class MovieOverviewController: UIViewController {
     
     func getFiles() {
         let documentsUrl =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-        
-        do {
-            // Get the directory contents urls (including subfolders urls)
-            let directoryContents = try FileManager.default.contentsOfDirectory(at: documentsUrl, includingPropertiesForKeys: nil, options: [])
-            
-            // Filter files to only include videos
+        if let directoryContents = try? FileManager.default.contentsOfDirectory(at: documentsUrl, includingPropertiesForKeys: nil, options: []) {
             movies = Movie().mapURLs(collection: directoryContents.filter{ $0.pathExtension == "mp4" || $0.pathExtension == "m4v" || $0.pathExtension == "mov"})
-            
-        } catch let error as NSError {
-            print(error.localizedDescription)
         }
+        finishedLoading = true
         collectionView.reloadData()
     }
 }
