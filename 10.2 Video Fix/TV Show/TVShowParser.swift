@@ -18,6 +18,7 @@ extension TVShow {
             
             if(!currentShow.isEmpty) {
                 var show = TVShow()
+                show.url = url
                 show.title = url.lastPathComponent
                 
                 let asset = AVAsset(url: currentShow[0])
