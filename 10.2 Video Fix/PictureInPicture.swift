@@ -11,7 +11,7 @@ import AVKit
 extension UIViewController: AVPlayerViewControllerDelegate {
     func presentPlayer(withURL: URL) {
         let playerVC = AVPlayerViewController()
-        playerVC.delegate = self
+        playerVC.delegate = self.navigationController
         playerVC.player = AVPlayer(url: withURL)
         self.present(playerVC, animated: true) {
             playerVC.player?.play()
