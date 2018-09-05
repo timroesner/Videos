@@ -12,6 +12,7 @@ class TVShowOverviewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     var shows = [TVShow]()
+    var finishedLoading = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,16 +28,10 @@ class TVShowOverviewController: UIViewController {
     
     func getFiles() {
         let documentsUrl =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-        do {
-            // Get the directory contents urls (including subfolders urls)
-            let directoryContents = try FileManager.default.contentsOfDirectory(at: documentsUrl, includingPropertiesForKeys: nil, options: [])
-            
-            // Check for directories
+        if let directoryContents = try? FileManager.default.contentsOfDirectory(at: documentsUrl, includingPropertiesForKeys: nil, options: []) {
             shows = TVShow().mapURLs(collection: directoryContents.filter{$0.hasDirectoryPath})
-            
-        } catch let error as NSError {
-            print(error.localizedDescription)
         }
+        finishedLoading = true
         collectionView.reloadData()
     }
 }

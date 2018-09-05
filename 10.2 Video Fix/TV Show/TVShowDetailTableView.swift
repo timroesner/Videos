@@ -11,7 +11,7 @@ import AVKit
 
 extension TVShowDetail: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if(currentShow.episodes.isEmpty) {
+        if currentShow.episodes.isEmpty {
             tableView.backgroundView = EmptyView().setup(title: "No Episodes", subtitle: "")
         } else {
             tableView.backgroundView = nil

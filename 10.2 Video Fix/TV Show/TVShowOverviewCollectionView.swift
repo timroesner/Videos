@@ -10,7 +10,7 @@ import UIKit
 
 extension TVShowOverviewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if shows.isEmpty {
+        if shows.isEmpty && finishedLoading {
             collectionView.backgroundView = EmptyView().setup(title: "No TV Shows", subtitle: "Connect to iTunes to add TV shows")
         } else {
             collectionView.backgroundView = nil
