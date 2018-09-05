@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import AVFoundation
-import AVKit
 
 class TVShowOverviewController: UIViewController {
     
@@ -29,7 +27,6 @@ class TVShowOverviewController: UIViewController {
     
     func getFiles() {
         let documentsUrl =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-        
         do {
             // Get the directory contents urls (including subfolders urls)
             let directoryContents = try FileManager.default.contentsOfDirectory(at: documentsUrl, includingPropertiesForKeys: nil, options: [])
@@ -40,6 +37,7 @@ class TVShowOverviewController: UIViewController {
         } catch let error as NSError {
             print(error.localizedDescription)
         }
+        collectionView.reloadData()
     }
 }
 
