@@ -32,7 +32,7 @@ class MoviesDetail: UIViewController {
         descLbl.text = currentMovie.description
         castLbl.attributedText = createParagraphs(array: currentMovie.cast, headline: "Cast")
         direcLbl.attributedText = createParagraphs(array: currentMovie.directors, headline: "Directors")
-        screenwrLbl.attributedText = createParagraphs(array: currentMovie.screenwriters, headline: "Screenwriters")
+        screenwrLbl.attributedText = createParagraphs(array: currentMovie.screenwriters, headline: "Writers")
     }
     
     func createParagraphs(array:[String], headline:String) -> NSMutableAttributedString {
