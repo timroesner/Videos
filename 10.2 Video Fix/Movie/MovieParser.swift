@@ -8,6 +8,7 @@
 
 import UIKit
 import AVFoundation
+import AVKit
 
 extension Movie {
     func mapURLs(collection:[URL]) -> [Movie] {
@@ -17,6 +18,13 @@ extension Movie {
             movie.url = url
             let asset = AVAsset(url: url)
             let metadata = asset.metadata(forFormat: AVMetadataFormatiTunesMetadata)
+            
+            
+            // AVPlayerVC on iOS currently does not support Chapters, leaving this here if that changes
+
+//            let chapters = asset.chapterMetadataGroups(bestMatchingPreferredLanguages: asset.availableChapterLocales.map({$0.identifier}))
+//            let navigationMarkersGroup = AVNavigationMarkersGroup(title: "Chapters", timedNavigationMarkers: chapters)
+            
             
             // Title
             movie.title = url.lastPathComponent
