@@ -1,5 +1,6 @@
 # Videos: Player & Library
-A simple video player for iOS that works with iTunes File Transfer.
+A simple video player for iOS that works with iTunes File Transfer. Available on the [App Store here](https://itunes.apple.com/us/app/10.2-videos-fix/id1190990668?mt=8).  
+Featured on [iDownload Blog](http://www.idownloadblog.com/2017/01/17/apples-new-tv-app-doesnt-like-ripped-dvds-here-are-some-workarounds/).
 
 ### Features:
 - Picture in Picture
