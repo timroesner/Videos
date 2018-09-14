@@ -20,9 +20,7 @@ extension MovieOverviewController: UICollectionViewDelegate, UICollectionViewDat
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "movieCell", for: indexPath) as! MovieOverviewCollectionViewCell
-        let movie = movies[indexPath.row]
-        cell.thumbnail.image = movie.artwork
-        cell.title.text = movie.title
+        cell.setup(movies[indexPath.row])
         return cell
     }
     

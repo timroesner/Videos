@@ -13,4 +13,8 @@ class MovieOverviewCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var thumbnail: UIImageView!
     @IBOutlet weak var title: UILabel!
     
+    func setup(_ movie: Movie) {
+        self.thumbnail.image = movie.artwork
+        self.title.text = movie.title
+    }
 }
