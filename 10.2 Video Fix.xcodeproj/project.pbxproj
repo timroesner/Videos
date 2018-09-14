@@ -27,11 +27,24 @@
 		229C3053213E4FCF009A469A /* TVShowOverviewCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229C3052213E4FCF009A469A /* TVShowOverviewCollectionView.swift */; };
 		229C3055213E5049009A469A /* TVShowOverviewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229C3054213E5049009A469A /* TVShowOverviewCollectionViewCell.swift */; };
 		229C3057213E5890009A469A /* TVShowOverviewCollectionLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229C3056213E5890009A469A /* TVShowOverviewCollectionLayout.swift */; };
+		229C306821478A4E009A469A /* MoviesTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229C306621478A4D009A469A /* MoviesTest.swift */; };
+		229C306921478A4E009A469A /* TVShowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229C306721478A4D009A469A /* TVShowTests.swift */; };
 		22ADD43921389F3900B58428 /* MovieOverviewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22ADD43821389F3900B58428 /* MovieOverviewCollectionViewCell.swift */; };
 		22ADD43C2138A02500B58428 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22ADD43B2138A02500B58428 /* Movie.swift */; };
 		22BB125B2138B2F400FF963C /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BB125A2138B2F400FF963C /* EmptyView.swift */; };
+		22EFF40B214B817A00DD784F /* testMovie.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 22EFF40A214B817A00DD784F /* testMovie.mp4 */; };
 		22F358851E1D0DC6008BAA70 /* MoviesDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F358841E1D0DC6008BAA70 /* MoviesDetail.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		229C3061214789C5009A469A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 225DDCA01E13D55300B51961 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 225DDCA71E13D55300B51961;
+			remoteInfo = "10.2 Video Fix";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		2236739D213A570F001FAF93 /* MovieOverviewCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieOverviewCollectionView.swift; sourceTree = "<group>"; };
@@ -56,14 +69,26 @@
 		229C3052213E4FCF009A469A /* TVShowOverviewCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVShowOverviewCollectionView.swift; sourceTree = "<group>"; };
 		229C3054213E5049009A469A /* TVShowOverviewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVShowOverviewCollectionViewCell.swift; sourceTree = "<group>"; };
 		229C3056213E5890009A469A /* TVShowOverviewCollectionLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVShowOverviewCollectionLayout.swift; sourceTree = "<group>"; };
+		229C305C214789C5009A469A /* VideosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VideosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		229C3060214789C5009A469A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		229C306621478A4D009A469A /* MoviesTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoviesTest.swift; sourceTree = "<group>"; };
+		229C306721478A4D009A469A /* TVShowTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TVShowTests.swift; sourceTree = "<group>"; };
 		22ADD43821389F3900B58428 /* MovieOverviewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieOverviewCollectionViewCell.swift; sourceTree = "<group>"; };
 		22ADD43B2138A02500B58428 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		22BB125A2138B2F400FF963C /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
+		22EFF40A214B817A00DD784F /* testMovie.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = testMovie.mp4; sourceTree = "<group>"; };
 		22F358841E1D0DC6008BAA70 /* MoviesDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoviesDetail.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		225DDCA51E13D55300B51961 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		229C3059214789C5009A469A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -77,6 +102,7 @@
 			isa = PBXGroup;
 			children = (
 				225DDCAA1E13D55300B51961 /* 10.2 Video Fix */,
+				229C305D214789C5009A469A /* VideosTests */,
 				225DDCA91E13D55300B51961 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -85,6 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				225DDCA81E13D55300B51961 /* 10.2 Video Fix.app */,
+				229C305C214789C5009A469A /* VideosTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -122,6 +149,17 @@
 			path = "TV Show";
 			sourceTree = "<group>";
 		};
+		229C305D214789C5009A469A /* VideosTests */ = {
+			isa = PBXGroup;
+			children = (
+				229C306621478A4D009A469A /* MoviesTest.swift */,
+				229C306721478A4D009A469A /* TVShowTests.swift */,
+				22EFF40A214B817A00DD784F /* testMovie.mp4 */,
+				229C3060214789C5009A469A /* Info.plist */,
+			);
+			path = VideosTests;
+			sourceTree = "<group>";
+		};
 		22ADD43A21389FB300B58428 /* Movie */ = {
 			isa = PBXGroup;
 			children = (
@@ -157,13 +195,31 @@
 			productReference = 225DDCA81E13D55300B51961 /* 10.2 Video Fix.app */;
 			productType = "com.apple.product-type.application";
 		};
+		229C305B214789C5009A469A /* VideosTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 229C3063214789C5009A469A /* Build configuration list for PBXNativeTarget "VideosTests" */;
+			buildPhases = (
+				229C3058214789C5009A469A /* Sources */,
+				229C3059214789C5009A469A /* Frameworks */,
+				229C305A214789C5009A469A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				229C3062214789C5009A469A /* PBXTargetDependency */,
+			);
+			name = VideosTests;
+			productName = VideosTests;
+			productReference = 229C305C214789C5009A469A /* VideosTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		225DDCA01E13D55300B51961 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0820;
+				LastSwiftUpdateCheck = 0940;
 				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = "Tim Roesner";
 				TargetAttributes = {
@@ -176,6 +232,12 @@
 								enabled = 1;
 							};
 						};
+					};
+					229C305B214789C5009A469A = {
+						CreatedOnToolsVersion = 9.4.1;
+						DevelopmentTeam = 7BT7DC73YL;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 225DDCA71E13D55300B51961;
 					};
 				};
 			};
@@ -193,6 +255,7 @@
 			projectRoot = "";
 			targets = (
 				225DDCA71E13D55300B51961 /* 10.2 Video Fix */,
+				229C305B214789C5009A469A /* VideosTests */,
 			);
 		};
 /* End PBXProject section */
@@ -207,6 +270,14 @@
 				225DDCB51E13D55300B51961 /* Assets.xcassets in Resources */,
 				225DDCC01E154E6F00B51961 /* MissingArtworkMovies.png in Resources */,
 				225DDCB31E13D55300B51961 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		229C305A214789C5009A469A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				22EFF40B214B817A00DD784F /* testMovie.mp4 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -239,7 +310,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		229C3058214789C5009A469A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				229C306821478A4E009A469A /* MoviesTest.swift in Sources */,
+				229C306921478A4E009A469A /* TVShowTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		229C3062214789C5009A469A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 225DDCA71E13D55300B51961 /* 10.2 Video Fix */;
+			targetProxy = 229C3061214789C5009A469A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		225DDCB11E13D55300B51961 /* Main.storyboard */ = {
@@ -398,6 +486,52 @@
 			};
 			name = Release;
 		};
+		229C3064214789C5009A469A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7BT7DC73YL;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = VideosTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.TR.VideosTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/10.2 Video Fix.app/10.2 Video Fix";
+			};
+			name = Debug;
+		};
+		229C3065214789C5009A469A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7BT7DC73YL;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = VideosTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.TR.VideosTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/10.2 Video Fix.app/10.2 Video Fix";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -415,6 +549,15 @@
 			buildConfigurations = (
 				225DDCBD1E13D55300B51961 /* Debug */,
 				225DDCBE1E13D55300B51961 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		229C3063214789C5009A469A /* Build configuration list for PBXNativeTarget "VideosTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				229C3064214789C5009A469A /* Debug */,
+				229C3065214789C5009A469A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
