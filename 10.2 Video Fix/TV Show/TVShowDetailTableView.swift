@@ -23,16 +23,16 @@ extension TVShowDetail: UITableViewDelegate, UITableViewDataSource {
         return true
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if(editingStyle == .delete) {
             let alertController = UIAlertController(title: "Delete Episode", message: "Are you sure you want to delete this episode? To readd it you will have to copy it from iTunes again.", preferredStyle: .alert)
             
-            let deleteAction = UIAlertAction(title: "Delete", style: UIAlertActionStyle.destructive) {
+            let deleteAction = UIAlertAction(title: "Delete", style: UIAlertAction.Style.destructive) {
                 (result : UIAlertAction) -> Void in
                 do {
                     try FileManager().removeItem(at: self.currentShow.episodes[indexPath.row].url)
                     self.currentShow.episodes.remove(at: indexPath.row)
-                    tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
+                    tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
                     tableView.reloadData()
                     
                     if(self.currentShow.episodes.isEmpty) {

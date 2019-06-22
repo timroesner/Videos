@@ -17,7 +17,7 @@ extension Movie {
             var movie = Movie()
             movie.url = url
             let asset = AVAsset(url: url)
-            let metadata = asset.metadata(forFormat: AVMetadataFormatiTunesMetadata)
+            let metadata = asset.metadata(forFormat: AVMetadataFormat.iTunesMetadata)
             
             
             // AVPlayerVC on iOS currently does not support Chapters, leaving this here if that changes
@@ -28,19 +28,19 @@ extension Movie {
             
             // Title
             movie.title = url.lastPathComponent
-            let titleItems = AVMetadataItem.metadataItems(from: metadata, withKey: "©nam", keySpace: "itsk")
+            let titleItems = AVMetadataItem.metadataItems(from: metadata, withKey: "©nam", keySpace: AVMetadataKeySpace(rawValue: "itsk"))
             if let data = titleItems.first, let title = data.stringValue {
                 movie.title = title
             }
             
             // Artwork
-            let artworkItems = AVMetadataItem.metadataItems(from: metadata, withKey: "covr", keySpace: "itsk")
+            let artworkItems = AVMetadataItem.metadataItems(from: metadata, withKey: "covr", keySpace: AVMetadataKeySpace(rawValue: "itsk"))
             if let artworkItem = artworkItems.first, let imageData = artworkItem.dataValue {
                 movie.artwork = UIImage(data: imageData)
             }
             
             // Description
-            let descItems = AVMetadataItem.metadataItems(from: metadata, withKey: "ldes", keySpace: "itsk")
+            let descItems = AVMetadataItem.metadataItems(from: metadata, withKey: "ldes", keySpace: AVMetadataKeySpace(rawValue: "itsk"))
             if let first = descItems.first, let desc = first.stringValue {
                 movie.description = desc
             }
@@ -49,19 +49,19 @@ extension Movie {
             movie.duration = Int(round(CMTimeGetSeconds(asset.duration) / 60))
             
             // Year
-            let yearItems = AVMetadataItem.metadataItems(from: metadata, withKey: "©day", keySpace: "itsk")
+            let yearItems = AVMetadataItem.metadataItems(from: metadata, withKey: "©day", keySpace: AVMetadataKeySpace(rawValue: "itsk"))
             if let first = yearItems.first, let data = first.stringValue {
-                let range = data.index(data.startIndex, offsetBy: 4)
-                movie.year = data.substring(to: range)
+                //let range = data.index(data.startIndex, offsetBy: 4)
+                movie.year = String(data.prefix(4))
             }
             
             // Genres
-            let genItems = AVMetadataItem.metadataItems(from: metadata, withKey: "©gen", keySpace: "itsk")
+            let genItems = AVMetadataItem.metadataItems(from: metadata, withKey: "©gen", keySpace: AVMetadataKeySpace(rawValue: "itsk"))
             if let first = genItems.first, let data = first.stringValue {
                 movie.genres = data
             }
             
-            let extendedInfo = AVMetadataItem.metadataItems(from: metadata, withKey: "com.apple.iTunes.iTunMOVI", keySpace: "itlk")
+            let extendedInfo = AVMetadataItem.metadataItems(from: metadata, withKey: "com.apple.iTunes.iTunMOVI", keySpace: AVMetadataKeySpace(rawValue: "itlk"))
             if let first = extendedInfo.first {
                 do {
                     let plistData = try PropertyListSerialization.propertyList(from: first.stringValue?.data(using: .utf8) ?? Data(), options: .mutableContainersAndLeaves, format: nil) as! [String:AnyObject]

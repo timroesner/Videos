@@ -22,16 +22,16 @@ extension TVShow {
                 show.title = url.lastPathComponent
                 
                 let asset = AVAsset(url: currentShow[0])
-                let metadata = asset.metadata(forFormat: AVMetadataFormatiTunesMetadata)
+                let metadata = asset.metadata(forFormat: AVMetadataFormat.iTunesMetadata)
                 
                 // Artwork
-                let artworkItems = AVMetadataItem.metadataItems(from: metadata, filteredByIdentifier: AVMetadataCommonIdentifierArtwork)
+                let artworkItems = AVMetadataItem.metadataItems(from: metadata, filteredByIdentifier: AVMetadataIdentifier.commonIdentifierArtwork)
                 if let artworkItem = artworkItems.first, let imageData = artworkItem.dataValue {
                         show.artwork = UIImage(data: imageData)
                 }
                 
                 // Description
-                let descriptionItems = AVMetadataItem.metadataItems(from: metadata, withKey: "ldes", keySpace: "itsk")
+                let descriptionItems = AVMetadataItem.metadataItems(from: metadata, withKey: "ldes", keySpace: AVMetadataKeySpace(rawValue: "itsk"))
                 if let descriptionItem = descriptionItems.first, let descriptionData = descriptionItem.stringValue {
                     show.description = descriptionData
                 }
@@ -41,18 +41,18 @@ extension TVShow {
                     episode.url = url
                     
                     let asset = AVAsset(url: url)
-                    let metadata = asset.metadata(forFormat: AVMetadataFormatiTunesMetadata)
+                    let metadata = asset.metadata(forFormat: AVMetadataFormat.iTunesMetadata)
                     
                     episode.duration = Int(round(CMTimeGetSeconds(asset.duration) / 60))
                     
                     // Episode Name
-                    let titleItems = AVMetadataItem.metadataItems(from: metadata, withKey: "©nam", keySpace: "itsk")
+                    let titleItems = AVMetadataItem.metadataItems(from: metadata, withKey: "©nam", keySpace: AVMetadataKeySpace(rawValue: "itsk"))
                     if let data = titleItems.first, let name = data.stringValue {
                             episode.title = name
                     }
                     
                     // Episode number
-                    let trackItems = AVMetadataItem.metadataItems(from: metadata, withKey: "tves", keySpace: "itsk")
+                    let trackItems = AVMetadataItem.metadataItems(from: metadata, withKey: "tves", keySpace: AVMetadataKeySpace(rawValue: "itsk"))
                     if let data = trackItems.first, let track = data.numberValue {
                         episode.number = track.intValue
                     }
