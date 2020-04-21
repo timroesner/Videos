@@ -10,15 +10,16 @@ import UIKit
 
 extension MovieOverviewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        var w: CGFloat = 0
-        let screenWidth = UIScreen.main.bounds.width
+        let availableWidth = collectionViewLayout.collectionViewContentSize.width
+        
+        let width: CGFloat
         if UIApplication.shared.statusBarOrientation.isLandscape {
-            w = (screenWidth-72)/5
+            width = (availableWidth - 72) / 5
         } else {
-            w = (screenWidth-48)/3
+            width = (availableWidth - 48) / 3
         }
-        let h = w*1.69
-        return CGSize(width: w, height: h)
+        let height = width*1.69
+        return CGSize(width: width, height: height)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
