@@ -26,14 +26,29 @@ class MovieOverviewController: UIViewController {
         getFiles()
     }
     
-    func getFiles() {
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        collectionView.collectionViewLayout.invalidateLayout()
+    }
+    
+    private func getFiles() {
         let documentsUrl =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         print(documentsUrl)
+        
         if let directoryContents = try? FileManager.default.contentsOfDirectory(at: documentsUrl, includingPropertiesForKeys: nil, options: []) {
             movies = Movie().mapURLs(collection: directoryContents.filter{ $0.pathExtension == "mp4" || $0.pathExtension == "m4v" || $0.pathExtension == "mov"})
         }
         finishedLoading = true
         collectionView.reloadData()
     }
+    
+    #if DEBUG
+    private func createTestMovies() {
+        for _ in 0 ... 10 {
+            let testMovie = Movie(url: nil, title: "Test", artwork: UIImage(named: "MissingArtworkMovies.png"), duration: 120, year: "2020", genres: "Comedy", description: "", cast: [], directors: [], screenwriters: [])
+            movies.append(testMovie)
+        }
+    }
+    #endif
 }
 

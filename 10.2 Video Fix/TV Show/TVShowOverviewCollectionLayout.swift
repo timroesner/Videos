@@ -10,15 +10,17 @@ import UIKit
 
 extension TVShowOverviewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        var w: CGFloat = 0
-        let screenWidth = UIScreen.main.bounds.width
-        if UIApplication.shared.statusBarOrientation.isLandscape {
-            w = (screenWidth-72)/5
+        let availableWidth = collectionView.frame.width
+        
+        let width: CGFloat
+        if traitCollection.horizontalSizeClass == .compact,
+        traitCollection.verticalSizeClass == .regular {
+            width = (availableWidth - 48) / 3
         } else {
-            w = (screenWidth-48)/3
+            width = (availableWidth - 72) / 5
         }
-        let h = w*1.14
-        return CGSize(width: w, height: h)
+        let height = width * 1.14
+        return CGSize(width: width, height: height)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {

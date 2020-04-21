@@ -26,7 +26,12 @@ class TVShowOverviewController: UIViewController {
         getFiles()
     }
     
-    func getFiles() {
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        collectionView.collectionViewLayout.invalidateLayout()
+    }
+    
+    private func getFiles() {
         let documentsUrl =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         if let directoryContents = try? FileManager.default.contentsOfDirectory(at: documentsUrl, includingPropertiesForKeys: nil, options: []) {
             shows = TVShow().mapURLs(collection: directoryContents.filter{$0.hasDirectoryPath})
