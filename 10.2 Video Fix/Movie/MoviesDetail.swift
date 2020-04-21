@@ -18,11 +18,19 @@ class MoviesDetail: UIViewController {
     @IBOutlet var castLbl: UILabel!
     @IBOutlet var direcLbl: UILabel!
     @IBOutlet var screenwrLbl: UILabel!
+    @IBOutlet var playButton: UIButton!
     var currentMovie = Movie()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setLables()
+        
+        if #available(iOS 13.4, *) {
+            playButton.pointerStyleProvider = { (button, _, _) in
+                let targetPreview = UITargetedPreview(view: button)
+                return UIPointerStyle(effect: .lift(targetPreview))
+            }
+        }
     }
     
     func setLables() {

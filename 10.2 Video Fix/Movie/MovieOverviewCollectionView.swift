@@ -20,7 +20,7 @@ extension MovieOverviewController: UICollectionViewDelegate, UICollectionViewDat
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "movieCell", for: indexPath) as! MovieOverviewCollectionViewCell
-        cell.setup(movies[indexPath.row])
+        cell.setup(with: movies[indexPath.row])
         return cell
     }
     
