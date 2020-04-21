@@ -13,12 +13,16 @@ import AVKit
 extension Movie {
     func mapURLs(collection:[URL]) -> [Movie] {
         var result = [Movie]()
-        for url in collection {
+        for var url in collection {
             var movie = Movie()
             movie.url = url
+            
+            var resourceValues = URLResourceValues()
+            resourceValues.isExcludedFromBackup = true
+            try? url.setResourceValues(resourceValues)
+            
             let asset = AVAsset(url: url)
             let metadata = asset.metadata(forFormat: AVMetadataFormat.iTunesMetadata)
-            
             
             // AVPlayerVC on iOS currently does not support Chapters, leaving this here if that changes
 

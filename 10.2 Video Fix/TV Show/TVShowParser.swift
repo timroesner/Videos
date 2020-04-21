@@ -12,7 +12,7 @@ import UIKit
 extension TVShow {
     func mapURLs(collection:[URL]) -> [TVShow] {
         var result = [TVShow]()
-        for url in collection {
+        for var url in collection {
             let directoryContents = try? FileManager.default.contentsOfDirectory(at: url, includingPropertiesForKeys: nil, options: [])
             let currentShow = directoryContents?.filter{ $0.pathExtension == "mp4" || $0.pathExtension == "m4v" || $0.pathExtension == "mov"} ?? []
             
@@ -20,6 +20,10 @@ extension TVShow {
                 var show = TVShow()
                 show.url = url
                 show.title = url.lastPathComponent
+                
+                var resourceValues = URLResourceValues()
+                resourceValues.isExcludedFromBackup = true
+                try? url.setResourceValues(resourceValues)
                 
                 let asset = AVAsset(url: currentShow[0])
                 let metadata = asset.metadata(forFormat: AVMetadataFormat.iTunesMetadata)
