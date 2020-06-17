@@ -50,12 +50,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		222720C3249740E200AC16E5 /* 10.2 Video Fix.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "10.2 Video Fix.entitlements"; sourceTree = "<group>"; };
 		222ED6FE22BDDD6C0014A6B1 /* ColorCompatibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorCompatibility.swift; sourceTree = "<group>"; };
 		2236739D213A570F001FAF93 /* MovieOverviewCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieOverviewCollectionView.swift; sourceTree = "<group>"; };
 		2236739F213A5741001FAF93 /* MovieOverviewCollectionLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieOverviewCollectionLayout.swift; sourceTree = "<group>"; };
 		224B5459213F63A300314FB4 /* TVShowDetailTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVShowDetailTableView.swift; sourceTree = "<group>"; };
-		224B545F213FB4F500314FB4 /* PictureInPicture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureInPicture.swift; sourceTree = "<group>"; };
+		224B545F213FB4F500314FB4 /* PlaybackController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaybackController.swift; sourceTree = "<group>"; };
 		225DDCA81E13D55300B51961 /* 10.2 Video Fix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "10.2 Video Fix.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		225DDCAB1E13D55300B51961 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		225DDCAD1E13D55300B51961 /* MovieOverviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieOverviewController.swift; sourceTree = "<group>"; };
@@ -126,10 +125,9 @@
 		225DDCAA1E13D55300B51961 /* 10.2 Video Fix */ = {
 			isa = PBXGroup;
 			children = (
-				222720C3249740E200AC16E5 /* 10.2 Video Fix.entitlements */,
 				225DDCAB1E13D55300B51961 /* AppDelegate.swift */,
 				22BB125A2138B2F400FF963C /* EmptyView.swift */,
-				224B545F213FB4F500314FB4 /* PictureInPicture.swift */,
+				224B545F213FB4F500314FB4 /* PlaybackController.swift */,
 				222ED6FE22BDDD6C0014A6B1 /* ColorCompatibility.swift */,
 				22A1F21A2499C05B00464EA9 /* Credentials.swift */,
 				22ADD43A21389FB300B58428 /* Movie */,
@@ -238,7 +236,6 @@
 				TargetAttributes = {
 					225DDCA71E13D55300B51961 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 7BT7DC73YL;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -320,7 +317,7 @@
 				229C3055213E5049009A469A /* TVShowOverviewCollectionViewCell.swift in Sources */,
 				229C3051213E49C7009A469A /* TVShowParser.swift in Sources */,
 				225DDCAE1E13D55300B51961 /* MovieOverviewController.swift in Sources */,
-				224B5460213FB4F500314FB4 /* PictureInPicture.swift in Sources */,
+				224B5460213FB4F500314FB4 /* PlaybackController.swift in Sources */,
 				229C3057213E5890009A469A /* TVShowOverviewCollectionLayout.swift in Sources */,
 				2236739E213A570F001FAF93 /* MovieOverviewCollectionView.swift in Sources */,
 				225DDCC41E16D73300B51961 /* TVShowDetail.swift in Sources */,
