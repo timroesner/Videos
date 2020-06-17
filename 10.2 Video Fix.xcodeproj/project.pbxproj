@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		222ED6FF22BDDD6C0014A6B1 /* ColorCompatability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222ED6FE22BDDD6C0014A6B1 /* ColorCompatability.swift */; };
+		222ED6FF22BDDD6C0014A6B1 /* ColorCompatibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222ED6FE22BDDD6C0014A6B1 /* ColorCompatibility.swift */; };
 		2236739E213A570F001FAF93 /* MovieOverviewCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2236739D213A570F001FAF93 /* MovieOverviewCollectionView.swift */; };
 		223673A0213A5741001FAF93 /* MovieOverviewCollectionLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2236739F213A5741001FAF93 /* MovieOverviewCollectionLayout.swift */; };
 		224B545A213F63A300314FB4 /* TVShowDetailTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224B5459213F63A300314FB4 /* TVShowDetailTableView.swift */; };
@@ -48,7 +48,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		222ED6FE22BDDD6C0014A6B1 /* ColorCompatability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorCompatability.swift; sourceTree = "<group>"; };
+		222ED6FE22BDDD6C0014A6B1 /* ColorCompatibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorCompatibility.swift; sourceTree = "<group>"; };
 		2236739D213A570F001FAF93 /* MovieOverviewCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieOverviewCollectionView.swift; sourceTree = "<group>"; };
 		2236739F213A5741001FAF93 /* MovieOverviewCollectionLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieOverviewCollectionLayout.swift; sourceTree = "<group>"; };
 		224B5459213F63A300314FB4 /* TVShowDetailTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVShowDetailTableView.swift; sourceTree = "<group>"; };
@@ -124,7 +124,7 @@
 				225DDCAB1E13D55300B51961 /* AppDelegate.swift */,
 				22BB125A2138B2F400FF963C /* EmptyView.swift */,
 				224B545F213FB4F500314FB4 /* PictureInPicture.swift */,
-				222ED6FE22BDDD6C0014A6B1 /* ColorCompatability.swift */,
+				222ED6FE22BDDD6C0014A6B1 /* ColorCompatibility.swift */,
 				22ADD43A21389FB300B58428 /* Movie */,
 				229C304B213E4789009A469A /* TV Show */,
 				225DDCB11E13D55300B51961 /* Main.storyboard */,
@@ -299,7 +299,7 @@
 				229C304D213E47E1009A469A /* TVShow.swift in Sources */,
 				225DDCB01E13D55300B51961 /* TVShowOverviewController.swift in Sources */,
 				229C304A213E45C7009A469A /* MovieParser.swift in Sources */,
-				222ED6FF22BDDD6C0014A6B1 /* ColorCompatability.swift in Sources */,
+				222ED6FF22BDDD6C0014A6B1 /* ColorCompatibility.swift in Sources */,
 				225DDCAC1E13D55300B51961 /* AppDelegate.swift in Sources */,
 				22BB125B2138B2F400FF963C /* EmptyView.swift in Sources */,
 				223673A0213A5741001FAF93 /* MovieOverviewCollectionLayout.swift in Sources */,
@@ -466,11 +466,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CURRENT_PROJECT_VERSION = 21;
 				DEVELOPMENT_TEAM = 7BT7DC73YL;
 				INFOPLIST_FILE = "10.2 Video Fix/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.3.2;
 				PRODUCT_BUNDLE_IDENTIFIER = TR.VideosFix;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -482,11 +480,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CURRENT_PROJECT_VERSION = 21;
 				DEVELOPMENT_TEAM = 7BT7DC73YL;
 				INFOPLIST_FILE = "10.2 Video Fix/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.3.2;
 				PRODUCT_BUNDLE_IDENTIFIER = TR.VideosFix;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
