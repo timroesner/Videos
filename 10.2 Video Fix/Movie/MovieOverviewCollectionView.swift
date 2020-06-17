@@ -11,7 +11,7 @@ import UIKit
 extension MovieOverviewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if movies.isEmpty && finishedLoading {
-            collectionView.backgroundView = EmptyView().setup(title: "No Movies", subtitle: "Connect to iTunes to add movies")
+            collectionView.backgroundView = EmptyView().setup(title: "No Movies", subtitle: "Connect to your computer to add movies")
         } else {
             collectionView.backgroundView = nil
         }
@@ -28,5 +28,9 @@ extension MovieOverviewController: UICollectionViewDelegate, UICollectionViewDat
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "movieDetail") as! MoviesDetail
         vc.currentMovie = movies[indexPath.row]
         self.navigationController?.pushViewController(vc, animated: true)
+		
+		if #available(iOS 11.0, *) {
+			navigationItem.searchController?.isActive = false
+		}
     }
 }

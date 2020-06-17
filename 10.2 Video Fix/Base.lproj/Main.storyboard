@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
     <device id="ipad11_0rounded" orientation="portrait" layout="fullscreen" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -22,7 +22,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="sXi-pJ-JL5">
-                                <rect key="frame" x="0.0" y="50" width="834" height="1144"/>
+                                <rect key="frame" x="8" y="0.0" width="818" height="1194"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="sqR-Jg-DMm">
                                     <size key="itemSize" width="150" height="251"/>
@@ -78,12 +78,12 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="sXi-pJ-JL5" firstAttribute="top" secondItem="Ia1-K6-d13" secondAttribute="bottom" id="JSo-46-Emh"/>
-                            <constraint firstAttribute="trailing" secondItem="sXi-pJ-JL5" secondAttribute="trailing" id="mPf-yG-ety"/>
+                            <constraint firstAttribute="trailing" secondItem="sXi-pJ-JL5" secondAttribute="trailing" constant="8" id="mPf-yG-ety"/>
+                            <constraint firstItem="sXi-pJ-JL5" firstAttribute="top" secondItem="tsR-hK-woN" secondAttribute="top" id="n9N-9g-Yj4"/>
                             <constraint firstAttribute="trailing" secondItem="sXi-pJ-JL5" secondAttribute="trailing" id="p7c-Wc-ZPM"/>
                             <constraint firstAttribute="bottom" secondItem="sXi-pJ-JL5" secondAttribute="bottom" id="tx3-dQ-cgw"/>
                             <constraint firstItem="sXi-pJ-JL5" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leading" id="ucF-IX-vlU"/>
-                            <constraint firstItem="sXi-pJ-JL5" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leading" id="ywJ-Jn-NWG"/>
+                            <constraint firstItem="sXi-pJ-JL5" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leading" constant="8" id="ywJ-Jn-NWG"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -123,7 +123,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Qvl-5C-JEF">
-                                <rect key="frame" x="0.0" y="50" width="834" height="1144"/>
+                                <rect key="frame" x="8" y="0.0" width="818" height="1194"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="guf-HJ-R9U">
                                     <size key="itemSize" width="194" height="170"/>
@@ -179,10 +179,10 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="Qvl-5C-JEF" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leading" id="Oos-Vy-Eyy"/>
+                            <constraint firstItem="Qvl-5C-JEF" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leading" constant="8" id="Oos-Vy-Eyy"/>
                             <constraint firstAttribute="bottom" secondItem="Qvl-5C-JEF" secondAttribute="bottom" id="Rkn-1j-MXN"/>
-                            <constraint firstAttribute="trailing" secondItem="Qvl-5C-JEF" secondAttribute="trailing" id="T8a-ml-sKv"/>
-                            <constraint firstItem="Qvl-5C-JEF" firstAttribute="top" secondItem="L7p-HK-0SC" secondAttribute="bottom" id="gH3-l7-o6U"/>
+                            <constraint firstAttribute="trailing" secondItem="Qvl-5C-JEF" secondAttribute="trailing" constant="8" id="T8a-ml-sKv"/>
+                            <constraint firstItem="Qvl-5C-JEF" firstAttribute="top" secondItem="QS5-Rx-YEW" secondAttribute="top" id="gH3-l7-o6U"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="TV Shows" id="tev-F1-0iJ"/>
@@ -280,13 +280,14 @@
                                     <action selector="playBtn:" destination="wHV-iE-HiC" eventType="touchUpInside" id="jv0-kr-3B3"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" pointerInteraction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ref-7U-rsB" userLabel="Trash Button">
-                                <rect key="frame" x="431" y="76" width="20" height="22"/>
+                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" pointerInteraction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ref-7U-rsB" userLabel="Trash Button">
+                                <rect key="frame" x="431" y="76" width="20" height="24"/>
                                 <constraints>
+                                    <constraint firstAttribute="height" constant="24" id="0kl-pT-sEi"/>
                                     <constraint firstAttribute="width" constant="20" id="xwi-ZP-tW5"/>
                                 </constraints>
                                 <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" image="trash.fill" catalog="system"/>
+                                <state key="normal" image="Trash"/>
                                 <connections>
                                     <action selector="trashBtn" destination="wHV-iE-HiC" eventType="touchUpInside" id="dvc-56-O7S"/>
                                 </connections>
@@ -538,7 +539,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f1G-Jt-adF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2205.6650246305421" y="-320.80000000000001"/>
+            <point key="canvasLocation" x="2205.0359712230215" y="-321.10552763819095"/>
         </scene>
         <!--Show Detail-->
         <scene sceneID="fgA-Db-9UI">
@@ -853,6 +854,6 @@
         <image name="Play" width="45" height="45"/>
         <image name="TV Shows" width="30" height="30"/>
         <image name="TV Shows Filled" width="30" height="30"/>
-        <image name="trash.fill" catalog="system" width="121" height="128"/>
+        <image name="Trash" width="43" height="49"/>
     </resources>
 </document>

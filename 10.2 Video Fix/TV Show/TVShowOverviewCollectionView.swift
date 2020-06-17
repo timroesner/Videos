@@ -11,7 +11,7 @@ import UIKit
 extension TVShowOverviewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if shows.isEmpty && finishedLoading {
-            collectionView.backgroundView = EmptyView().setup(title: "No TV Shows", subtitle: "Connect to iTunes to add TV shows")
+            collectionView.backgroundView = EmptyView().setup(title: "No TV Shows", subtitle: "Connect to your computer to add TV shows")
         } else {
             collectionView.backgroundView = nil
         }
@@ -30,5 +30,9 @@ extension TVShowOverviewController: UICollectionViewDelegate, UICollectionViewDa
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "showDetail") as! TVShowDetail
         vc.currentShow = currentShow
         self.navigationController?.pushViewController(vc, animated: true)
+		
+		if #available(iOS 11.0, *) {
+			navigationItem.searchController?.isActive = false
+		}
     }
 }

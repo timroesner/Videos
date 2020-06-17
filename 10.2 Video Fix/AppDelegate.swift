@@ -9,25 +9,23 @@
 import UIKit
 import AVFoundation
 import AVKit
+import AmplitudeLite
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-            let audioSession = AVAudioSession.sharedInstance()
-            do {
-                try audioSession.setCategory(AVAudioSession.Category.playback)
-            } catch {
-                print("Unable to set audio session category")
-            }
+        // Override mute
+        try? AVAudioSession.sharedInstance().setCategory(.playback)
         
-            //Override mute
-            try! AVAudioSession.sharedInstance().setCategory(.playback)
+        // Analytics
+		Analytics.shared.configure(withAPIKey: Credentials.analyticsKey)
+        Analytics.shared.trackEvent(.appStart, includeDeviceInfo: true)
+        Analytics.shared.trackEvent(.accessibilitySettings, properties: Analytics.accessibilityProperties)
         
-            return true
+        return true
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
@@ -50,5 +48,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
+	
+	func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+		guard let rootVC = app.keyWindow?.rootViewController else { return false }
+		
+		if let playerVC = rootVC.presentedViewController as? AVPlayerViewController {
+			playerVC.dismiss(animated: false, completion: nil)
+		}
+		
+		rootVC.presentPlayer(with: url)
+		return true
+	}
 }
 

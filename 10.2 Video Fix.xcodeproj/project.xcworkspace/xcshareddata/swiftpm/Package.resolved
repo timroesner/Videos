@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "AmplitudeLite",
+        "repositoryURL": "https://github.com/timroesner/AmplitudeLite.git",
+        "state": {
+          "branch": "master",
+          "revision": "58f64087d8e3e0582ad371063a559164a173e40c",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}

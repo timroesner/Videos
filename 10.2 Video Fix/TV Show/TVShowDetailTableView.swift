@@ -8,6 +8,7 @@
 
 import UIKit
 import AVKit
+import AmplitudeLite
 
 extension TVShowDetail: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -25,12 +26,16 @@ extension TVShowDetail: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if(editingStyle == .delete) {
-            let alertController = UIAlertController(title: "Delete Episode", message: "Are you sure you want to delete this episode? To readd it you will have to copy it from iTunes again.", preferredStyle: .alert)
+			let episode = self.currentShow.episodes[indexPath.row]
+			
+			let alertController = UIAlertController(title: "Delete \(episode.title)", message: "Are you sure you want to delete this episode? To re-add it you will have to copy it from your computer again.", preferredStyle: .alert)
             
-            let deleteAction = UIAlertAction(title: "Delete", style: UIAlertAction.Style.destructive) {
-                (result : UIAlertAction) -> Void in
+            let deleteAction = UIAlertAction(title: "Delete", style: UIAlertAction.Style.destructive) { [weak self] _ in
+				guard let self = self else { return }
                 do {
-                    try FileManager().removeItem(at: self.currentShow.episodes[indexPath.row].url)
+					try FileManager().removeItem(at: episode.url)
+					UserDefaults.standard.removeTime(forKey: self.documentsPath(of: episode.url))
+                    Analytics.shared.trackEvent(.interaction, properties: [.type: "delete-tv-show-episode"])
                     self.currentShow.episodes.remove(at: indexPath.row)
                     tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
                     tableView.reloadData()
@@ -65,6 +70,7 @@ extension TVShowDetail: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
         tableView.deselectRow(at: indexPath, animated: true)
-        self.presentPlayer(withURL: currentShow.episodes[indexPath.row].url)
+        Analytics.shared.trackEvent(.interaction, properties: [.type: "play-tv-show-episode"])
+        self.presentPlayer(with: currentShow.episodes[indexPath.row].url)
     }
 }

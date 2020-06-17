@@ -41,8 +41,7 @@ extension TVShow {
                 }
                 
                 for url in currentShow {
-                    var episode = TVEpisode()
-                    episode.url = url
+					var episode = TVEpisode(url: url)
                     
                     let asset = AVAsset(url: url)
                     let metadata = asset.metadata(forFormat: AVMetadataFormat.iTunesMetadata)
