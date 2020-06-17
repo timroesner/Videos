@@ -9,6 +9,7 @@
 import UIKit
 import AVFoundation
 import AVKit
+import AmplitudeLite
 
 class MoviesDetail: UIViewController {
     
@@ -20,7 +21,7 @@ class MoviesDetail: UIViewController {
     @IBOutlet var screenwrLbl: UILabel!
     @IBOutlet var playButton: UIButton!
     var currentMovie = Movie()
-    
+	    
     override func viewDidLoad() {
         super.viewDidLoad()
         setLables()
@@ -31,6 +32,7 @@ class MoviesDetail: UIViewController {
                 return UIPointerStyle(effect: .lift(targetPreview))
             }
         }
+        Analytics.shared.trackEvent(.screenView, properties: [.screenName: "movie-details"])
     }
     
     func setLables() {
@@ -58,16 +60,19 @@ class MoviesDetail: UIViewController {
     }
     
     @IBAction func playBtn (_ Sender: UIButton) {
-        self.presentPlayer(withURL: currentMovie.url)
+        Analytics.shared.trackEvent(.interaction, properties: [.type: "play-movie"])
+        self.presentPlayer(with: currentMovie.url)
     }
     
     @IBAction func trashBtn() {
         let alertController = UIAlertController(title: "Delete Movie", message: "Are you sure you want to delete this movie? To readd it you will have to copy it from iTunes again.", preferredStyle: .alert)
         
-        let deleteAction = UIAlertAction(title: "Delete", style: UIAlertAction.Style.destructive) {
-            (result : UIAlertAction) -> Void in
+        let deleteAction = UIAlertAction(title: "Delete", style: UIAlertAction.Style.destructive) { [weak self] _ in
+			guard let self = self else { return }
             do {
                 try FileManager().removeItem(at: self.currentMovie.url)
+				UserDefaults.standard.removeObject(forKey: self.documentsPath(of: self.currentMovie.url))
+                Analytics.shared.trackEvent(.interaction, properties: [.type: "delete-movie"])
                 self.navigationController?.popViewController(animated: true)
             } catch {
                 print(error.localizedDescription)

@@ -19,6 +19,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override mute
         try? AVAudioSession.sharedInstance().setCategory(.playback)
         
+        // Analytics
+		Analytics.shared.configure(withAPIKey: Credentials.analyticsKey)
+        Analytics.shared.trackEvent(.appStart, includeDeviceInfo: true)
+        Analytics.shared.trackEvent(.accessibilitySettings, properties: Analytics.accessibilityProperties)
         
         return true
     }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AmplitudeLite
 
 class TVShowDetail: UIViewController {
     
@@ -24,6 +25,8 @@ class TVShowDetail: UIViewController {
         
         currentShow.episodes.sort(by: {$0.number < $1.number})
         tableView.tableFooterView = UIView()
+        
+        Analytics.shared.trackEvent(.screenView, properties: [.screenName: "tv-show-details"])
     }
 }
 
