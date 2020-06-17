@@ -51,7 +51,7 @@ extension UIViewController: AVPlayerViewControllerDelegate {
 	}
 }
 
-private extension UserDefaults {
+extension UserDefaults {
 	func time(forKey key: String) -> CMTime? {
 		if let timescale = object(forKey: key + ".timescale") as? NSNumber {
 			let seconds = double(forKey: key + ".seconds")
@@ -67,5 +67,10 @@ private extension UserDefaults {
 		
 		set(seconds, forKey: key + ".seconds")
 		set(NSNumber(value: timescale), forKey: key + ".timescale")
+	}
+	
+	func removeTime(forKey key: String) {
+		removeObject(forKey: key + ".seconds")
+		removeObject(forKey: key + ".timescale")
 	}
 }
