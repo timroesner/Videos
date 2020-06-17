@@ -11,7 +11,7 @@ import UIKit
 extension MovieOverviewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if movies.isEmpty && finishedLoading {
-            collectionView.backgroundView = EmptyView().setup(title: "No Movies", subtitle: "Connect to iTunes to add movies")
+            collectionView.backgroundView = EmptyView().setup(title: "No Movies", subtitle: "Connect to your computer to add movies")
         } else {
             collectionView.backgroundView = nil
         }

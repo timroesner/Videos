@@ -29,7 +29,7 @@ class MoviesDetail: UIViewController {
         if #available(iOS 13.4, *) {
             playButton.pointerStyleProvider = { (button, _, _) in
                 let targetPreview = UITargetedPreview(view: button)
-                return UIPointerStyle(effect: .lift(targetPreview))
+				return UIPointerStyle(effect: .hover(targetPreview, preferredTintMode: .none, prefersShadow: false, prefersScaledContent: true))
             }
         }
         Analytics.shared.trackEvent(.screenView, properties: [.screenName: "movie-details"])
@@ -65,13 +65,13 @@ class MoviesDetail: UIViewController {
     }
     
     @IBAction func trashBtn() {
-        let alertController = UIAlertController(title: "Delete Movie", message: "Are you sure you want to delete this movie? To readd it you will have to copy it from iTunes again.", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Delete \(currentMovie.title)", message: "Are you sure you want to delete this movie? To re-add it you will have to copy it from your computer again.", preferredStyle: .alert)
         
         let deleteAction = UIAlertAction(title: "Delete", style: UIAlertAction.Style.destructive) { [weak self] _ in
 			guard let self = self else { return }
             do {
                 try FileManager().removeItem(at: self.currentMovie.url)
-				UserDefaults.standard.removeObject(forKey: self.documentsPath(of: self.currentMovie.url))
+				UserDefaults.standard.removeTime(forKey: self.documentsPath(of: self.currentMovie.url))
                 Analytics.shared.trackEvent(.interaction, properties: [.type: "delete-movie"])
                 self.navigationController?.popViewController(animated: true)
             } catch {
