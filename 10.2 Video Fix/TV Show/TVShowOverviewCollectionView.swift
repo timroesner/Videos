@@ -30,5 +30,9 @@ extension TVShowOverviewController: UICollectionViewDelegate, UICollectionViewDa
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "showDetail") as! TVShowDetail
         vc.currentShow = currentShow
         self.navigationController?.pushViewController(vc, animated: true)
+		
+		if #available(iOS 11.0, *) {
+			navigationItem.searchController?.isActive = false
+		}
     }
 }

@@ -8,17 +8,35 @@
 
 import UIKit
 
-class MovieOverviewController: UIViewController {
-    
+class MovieOverviewController: UIViewController, UISearchResultsUpdating {
     @IBOutlet var collectionView: UICollectionView!
-    var movies = [Movie]()
+	private var _movies = [Movie]()
+	var movies: [Movie] {
+		get {
+			if #available(iOS 11.0, *) {
+				guard let searchController = navigationItem.searchController, let searchText = searchController.searchBar.text else { return _movies }
+				return searchController.isActive && !searchText.isEmpty ? _movies.filter({ $0.title.contains(searchText) }) : _movies
+			} else {
+				return _movies
+			}
+		}
+		set {
+			_movies = newValue
+		}
+	}
     var finishedLoading = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
         if #available(iOS 11.0, *) {
-            self.navigationController?.navigationBar.prefersLargeTitles = true
-        }
+            navigationController?.navigationBar.prefersLargeTitles = true
+			
+			let searchController = UISearchController(searchResultsController: nil)
+			searchController.searchResultsUpdater = self
+			searchController.obscuresBackgroundDuringPresentation = false
+			navigationItem.searchController = searchController
+		}
+		extendedLayoutIncludesOpaqueBars = true
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -30,6 +48,12 @@ class MovieOverviewController: UIViewController {
         super.viewWillLayoutSubviews()
         collectionView.collectionViewLayout.invalidateLayout()
     }
+	
+	func updateSearchResults(for searchController: UISearchController) {
+		if searchController.isActive {
+			collectionView.reloadData()
+		}
+	}
     
     private func getFiles() {
         let documentsUrl =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
@@ -40,7 +64,7 @@ class MovieOverviewController: UIViewController {
         finishedLoading = true
         collectionView.reloadData()
     }
-    
+	
     #if DEBUG
     private func createTestMovies() {
         for _ in 0 ... 10 {

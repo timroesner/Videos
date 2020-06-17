@@ -8,17 +8,36 @@
 
 import UIKit
 
-class TVShowOverviewController: UIViewController {
+class TVShowOverviewController: UIViewController, UISearchResultsUpdating {
     
     @IBOutlet weak var collectionView: UICollectionView!
-    var shows = [TVShow]()
+    var _shows = [TVShow]()
+	var shows: [TVShow] {
+		get {
+			if #available(iOS 11.0, *) {
+				guard let searchController = navigationItem.searchController, let searchText = searchController.searchBar.text else { return _shows }
+				return searchController.isActive && !searchText.isEmpty ? _shows.filter({ $0.title.contains(searchText) }) : _shows
+			} else {
+				return _shows
+			}
+		}
+		set {
+			_shows = newValue
+		}
+	}
     var finishedLoading = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
         if #available(iOS 11.0, *) {
             self.navigationController?.navigationBar.prefersLargeTitles = true
+			
+			let searchController = UISearchController(searchResultsController: nil)
+			searchController.searchResultsUpdater = self
+			searchController.obscuresBackgroundDuringPresentation = false
+			navigationItem.searchController = searchController
         }
+		extendedLayoutIncludesOpaqueBars = true
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -30,6 +49,12 @@ class TVShowOverviewController: UIViewController {
         super.viewWillLayoutSubviews()
         collectionView.collectionViewLayout.invalidateLayout()
     }
+	
+	func updateSearchResults(for searchController: UISearchController) {
+		if searchController.isActive {
+			collectionView.reloadData()
+		}
+	}
     
     private func getFiles() {
         let documentsUrl =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
