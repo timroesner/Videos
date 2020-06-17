@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -11,7 +11,7 @@
 		2236739E213A570F001FAF93 /* MovieOverviewCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2236739D213A570F001FAF93 /* MovieOverviewCollectionView.swift */; };
 		223673A0213A5741001FAF93 /* MovieOverviewCollectionLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2236739F213A5741001FAF93 /* MovieOverviewCollectionLayout.swift */; };
 		224B545A213F63A300314FB4 /* TVShowDetailTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224B5459213F63A300314FB4 /* TVShowDetailTableView.swift */; };
-		224B5460213FB4F500314FB4 /* PictureInPicture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224B545F213FB4F500314FB4 /* PictureInPicture.swift */; };
+		224B5460213FB4F500314FB4 /* PlaybackController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224B545F213FB4F500314FB4 /* PlaybackController.swift */; };
 		225DDCAC1E13D55300B51961 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225DDCAB1E13D55300B51961 /* AppDelegate.swift */; };
 		225DDCAE1E13D55300B51961 /* MovieOverviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225DDCAD1E13D55300B51961 /* MovieOverviewController.swift */; };
 		225DDCB01E13D55300B51961 /* TVShowOverviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225DDCAF1E13D55300B51961 /* TVShowOverviewController.swift */; };
@@ -21,6 +21,7 @@
 		225DDCC01E154E6F00B51961 /* MissingArtworkMovies.png in Resources */ = {isa = PBXBuildFile; fileRef = 225DDCBF1E154E6F00B51961 /* MissingArtworkMovies.png */; };
 		225DDCC21E16C43B00B51961 /* MissingArtworkTV.png in Resources */ = {isa = PBXBuildFile; fileRef = 225DDCC11E16C43B00B51961 /* MissingArtworkTV.png */; };
 		225DDCC41E16D73300B51961 /* TVShowDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225DDCC31E16D73300B51961 /* TVShowDetail.swift */; };
+		228568F12474E4C90088871C /* AmplitudeLite in Frameworks */ = {isa = PBXBuildFile; productRef = 228568F02474E4C90088871C /* AmplitudeLite */; };
 		229C304A213E45C7009A469A /* MovieParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229C3049213E45C7009A469A /* MovieParser.swift */; };
 		229C304D213E47E1009A469A /* TVShow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229C304C213E47E1009A469A /* TVShow.swift */; };
 		229C304F213E489C009A469A /* TVEpisode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229C304E213E489C009A469A /* TVEpisode.swift */; };
@@ -30,6 +31,7 @@
 		229C3057213E5890009A469A /* TVShowOverviewCollectionLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229C3056213E5890009A469A /* TVShowOverviewCollectionLayout.swift */; };
 		229C306821478A4E009A469A /* MoviesTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229C306621478A4D009A469A /* MoviesTest.swift */; };
 		229C306921478A4E009A469A /* TVShowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229C306721478A4D009A469A /* TVShowTests.swift */; };
+		22A1F21B2499C05B00464EA9 /* Credentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A1F21A2499C05B00464EA9 /* Credentials.swift */; };
 		22ADD43921389F3900B58428 /* MovieOverviewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22ADD43821389F3900B58428 /* MovieOverviewCollectionViewCell.swift */; };
 		22ADD43C2138A02500B58428 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22ADD43B2138A02500B58428 /* Movie.swift */; };
 		22BB125B2138B2F400FF963C /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BB125A2138B2F400FF963C /* EmptyView.swift */; };
@@ -48,6 +50,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		222720C3249740E200AC16E5 /* 10.2 Video Fix.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "10.2 Video Fix.entitlements"; sourceTree = "<group>"; };
 		222ED6FE22BDDD6C0014A6B1 /* ColorCompatibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorCompatibility.swift; sourceTree = "<group>"; };
 		2236739D213A570F001FAF93 /* MovieOverviewCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieOverviewCollectionView.swift; sourceTree = "<group>"; };
 		2236739F213A5741001FAF93 /* MovieOverviewCollectionLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieOverviewCollectionLayout.swift; sourceTree = "<group>"; };
@@ -75,6 +78,7 @@
 		229C3060214789C5009A469A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		229C306621478A4D009A469A /* MoviesTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoviesTest.swift; sourceTree = "<group>"; };
 		229C306721478A4D009A469A /* TVShowTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TVShowTests.swift; sourceTree = "<group>"; };
+		22A1F21A2499C05B00464EA9 /* Credentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Credentials.swift; sourceTree = "<group>"; };
 		22ADD43821389F3900B58428 /* MovieOverviewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieOverviewCollectionViewCell.swift; sourceTree = "<group>"; };
 		22ADD43B2138A02500B58428 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		22BB125A2138B2F400FF963C /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
@@ -87,6 +91,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				228568F12474E4C90088871C /* AmplitudeLite in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -121,10 +126,12 @@
 		225DDCAA1E13D55300B51961 /* 10.2 Video Fix */ = {
 			isa = PBXGroup;
 			children = (
+				222720C3249740E200AC16E5 /* 10.2 Video Fix.entitlements */,
 				225DDCAB1E13D55300B51961 /* AppDelegate.swift */,
 				22BB125A2138B2F400FF963C /* EmptyView.swift */,
 				224B545F213FB4F500314FB4 /* PictureInPicture.swift */,
 				222ED6FE22BDDD6C0014A6B1 /* ColorCompatibility.swift */,
+				22A1F21A2499C05B00464EA9 /* Credentials.swift */,
 				22ADD43A21389FB300B58428 /* Movie */,
 				229C304B213E4789009A469A /* TV Show */,
 				225DDCB11E13D55300B51961 /* Main.storyboard */,
@@ -194,6 +201,9 @@
 			dependencies = (
 			);
 			name = "10.2 Video Fix";
+			packageProductDependencies = (
+				228568F02474E4C90088871C /* AmplitudeLite */,
+			);
 			productName = "10.2 Video Fix";
 			productReference = 225DDCA81E13D55300B51961 /* 10.2 Video Fix.app */;
 			productType = "com.apple.product-type.application";
@@ -253,6 +263,9 @@
 				Base,
 			);
 			mainGroup = 225DDC9F1E13D55300B51961;
+			packageReferences = (
+				228568EF2474E4C90088871C /* XCRemoteSwiftPackageReference "AmplitudeLite" */,
+			);
 			productRefGroup = 225DDCA91E13D55300B51961 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -294,6 +307,7 @@
 				229C304F213E489C009A469A /* TVEpisode.swift in Sources */,
 				22ADD43C2138A02500B58428 /* Movie.swift in Sources */,
 				22ADD43921389F3900B58428 /* MovieOverviewCollectionViewCell.swift in Sources */,
+				22A1F21B2499C05B00464EA9 /* Credentials.swift in Sources */,
 				224B545A213F63A300314FB4 /* TVShowDetailTableView.swift in Sources */,
 				229C3053213E4FCF009A469A /* TVShowOverviewCollectionView.swift in Sources */,
 				229C304D213E47E1009A469A /* TVShow.swift in Sources */,
@@ -456,7 +470,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -466,11 +481,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "10.2 Video Fix/10.2 Video Fix.entitlements";
+				CURRENT_PROJECT_VERSION = 21;
 				DEVELOPMENT_TEAM = 7BT7DC73YL;
 				INFOPLIST_FILE = "10.2 Video Fix/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.3.2;
 				PRODUCT_BUNDLE_IDENTIFIER = TR.VideosFix;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -480,11 +502,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "10.2 Video Fix/10.2 Video Fix.entitlements";
+				CURRENT_PROJECT_VERSION = 21;
 				DEVELOPMENT_TEAM = 7BT7DC73YL;
 				INFOPLIST_FILE = "10.2 Video Fix/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.3.2;
 				PRODUCT_BUNDLE_IDENTIFIER = TR.VideosFix;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -504,7 +533,11 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = VideosTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.TR.VideosTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -527,7 +560,11 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = VideosTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.TR.VideosTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -567,6 +604,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		228568EF2474E4C90088871C /* XCRemoteSwiftPackageReference "AmplitudeLite" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/timroesner/AmplitudeLite.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		228568F02474E4C90088871C /* AmplitudeLite */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 228568EF2474E4C90088871C /* XCRemoteSwiftPackageReference "AmplitudeLite" */;
+			productName = AmplitudeLite;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 225DDCA01E13D55300B51961 /* Project object */;
 }
