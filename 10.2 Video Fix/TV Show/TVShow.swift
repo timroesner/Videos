@@ -10,7 +10,7 @@ import UIKit
 
 struct TVShow {
     var title = ""
-    var url: URL!
+    var url: URL
     var artwork = UIImage(named: "MissingArtworkTV")
     var description = ""
     var episodes = [TVEpisode]()

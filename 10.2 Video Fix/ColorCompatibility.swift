@@ -22,4 +22,11 @@ enum ColorCompatibility {
         }
         return UIColor(red: 0.23529411764705882, green: 0.23529411764705882, blue: 0.2627450980392157, alpha: 0.6)
     }
+	
+	static var systemBackground: UIColor {
+		if #available(iOS 13, *) {
+			return .systemBackground
+		}
+		return .white
+	}
 }

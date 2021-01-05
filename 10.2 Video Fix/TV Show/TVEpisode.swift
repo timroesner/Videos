@@ -10,7 +10,14 @@ import UIKit
 
 struct TVEpisode {
     var title = ""
-    var number = 0
+	var description = ""
+    var episodeNumber = 0
+	var seasonNumber = 0
     var url: URL
     var duration = 0
+}
+
+struct Season {
+	var seasonNumber: Int
+	var episodes: [TVEpisode]
 }

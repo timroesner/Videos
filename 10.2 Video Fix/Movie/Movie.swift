@@ -9,7 +9,7 @@
 import UIKit
 
 struct Movie {
-    var url: URL!
+    var url: URL
     var title = ""
     var artwork = UIImage(named: "MissingArtworkMovies.png")
     var duration = 0

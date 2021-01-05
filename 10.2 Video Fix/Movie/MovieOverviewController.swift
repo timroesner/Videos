@@ -10,7 +10,9 @@ import UIKit
 
 class MovieOverviewController: UIViewController, UISearchResultsUpdating {
     @IBOutlet var collectionView: UICollectionView!
+	
 	private var _movies = [Movie]()
+	
 	var movies: [Movie] {
 		get {
 			if #available(iOS 11.0, *) {
@@ -24,6 +26,7 @@ class MovieOverviewController: UIViewController, UISearchResultsUpdating {
 			_movies = newValue
 		}
 	}
+	
     var finishedLoading = false
 
     override func viewDidLoad() {
@@ -59,7 +62,7 @@ class MovieOverviewController: UIViewController, UISearchResultsUpdating {
         let documentsUrl =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         
         if let directoryContents = try? FileManager.default.contentsOfDirectory(at: documentsUrl, includingPropertiesForKeys: nil, options: []) {
-            movies = Movie().mapURLs(collection: directoryContents.filter{ $0.pathExtension == "mp4" || $0.pathExtension == "m4v" || $0.pathExtension == "mov"})
+            movies = Movie.mapURLs(collection: directoryContents.filter{ $0.pathExtension == "mp4" || $0.pathExtension == "m4v" || $0.pathExtension == "mov"})
         }
         finishedLoading = true
         collectionView.reloadData()
@@ -67,10 +70,13 @@ class MovieOverviewController: UIViewController, UISearchResultsUpdating {
 	
     #if DEBUG
     private func createTestMovies() {
-        for _ in 0 ... 10 {
-            let testMovie = Movie(url: nil, title: "Test", artwork: UIImage(named: "MissingArtworkMovies.png"), duration: 120, year: "2020", genres: "Comedy", description: "", cast: [], directors: [], screenwriters: [])
+        for index in 1 ... 10 {
+			let testURL = URL(string: "https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/1080/Big_Buck_Bunny_1080_10s_1MB.mp4")!
+            let testMovie = Movie(url: testURL, title: "Test \(index)", duration: 126, year: "2020", genres: "Comedy", description: "This is a test movie",
+								  cast: [], directors: [], screenwriters: [])
             movies.append(testMovie)
         }
+		collectionView.reloadData()
     }
     #endif
 }

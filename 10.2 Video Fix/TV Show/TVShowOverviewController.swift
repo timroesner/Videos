@@ -59,10 +59,28 @@ class TVShowOverviewController: UIViewController, UISearchResultsUpdating {
     private func getFiles() {
         let documentsUrl =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         if let directoryContents = try? FileManager.default.contentsOfDirectory(at: documentsUrl, includingPropertiesForKeys: nil, options: []) {
-            shows = TVShow().mapURLs(collection: directoryContents.filter{$0.hasDirectoryPath})
+            shows = TVShow.mapURLs(collection: directoryContents.filter{$0.hasDirectoryPath})
         }
         finishedLoading = true
         collectionView.reloadData()
     }
+	
+	#if DEBUG
+	private func createTestShows() {
+		var shows = [TVShow]()
+		for index in 1...10 {
+			var episodes = [TVEpisode]()
+			let testURL = URL(string: "https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/1080/Big_Buck_Bunny_1080_10s_1MB.mp4")!
+			for episodeIndex in 1...10 {
+				let episode = TVEpisode(title: "Episode \(episodeIndex)", episodeNumber: episodeIndex, url: testURL, duration: 25 + ((-5...5).randomElement() ?? 0))
+				episodes.append(episode)
+			}
+			let show = TVShow(title: "Test Show \(index)", url: testURL, description: "This is a TV show for testing", episodes: episodes)
+			shows.append(show)
+		}
+		self.shows = shows
+		collectionView.reloadData()
+	}
+	#endif
 }
 

@@ -11,12 +11,11 @@ import AVFoundation
 import AVKit
 
 extension Movie {
-    func mapURLs(collection:[URL]) -> [Movie] {
+    static func mapURLs(collection:[URL]) -> [Movie] {
         var result = [Movie]()
         for var url in collection {
-            var movie = Movie()
-            movie.url = url
-            
+			var movie = Movie(url: url)
+			
             var resourceValues = URLResourceValues()
             resourceValues.isExcludedFromBackup = true
             try? url.setResourceValues(resourceValues)
@@ -38,13 +37,13 @@ extension Movie {
             }
             
             // Artwork
-            let artworkItems = AVMetadataItem.metadataItems(from: metadata, withKey: "covr", keySpace: AVMetadataKeySpace(rawValue: "itsk"))
+            let artworkItems = AVMetadataItem.metadataItems(from: metadata, withKey: "covr", keySpace: .iTunes)
             if let artworkItem = artworkItems.first, let imageData = artworkItem.dataValue {
                 movie.artwork = UIImage(data: imageData)
             }
             
             // Description
-            let descItems = AVMetadataItem.metadataItems(from: metadata, withKey: "ldes", keySpace: AVMetadataKeySpace(rawValue: "itsk"))
+            let descItems = AVMetadataItem.metadataItems(from: metadata, withKey: "ldes", keySpace: .iTunes)
             if let first = descItems.first, let desc = first.stringValue {
                 movie.description = desc
             }
@@ -53,14 +52,14 @@ extension Movie {
             movie.duration = Int(round(CMTimeGetSeconds(asset.duration) / 60))
             
             // Year
-            let yearItems = AVMetadataItem.metadataItems(from: metadata, withKey: "©day", keySpace: AVMetadataKeySpace(rawValue: "itsk"))
+            let yearItems = AVMetadataItem.metadataItems(from: metadata, withKey: "©day", keySpace: .iTunes)
             if let first = yearItems.first, let data = first.stringValue {
                 //let range = data.index(data.startIndex, offsetBy: 4)
                 movie.year = String(data.prefix(4))
             }
             
             // Genres
-            let genItems = AVMetadataItem.metadataItems(from: metadata, withKey: "©gen", keySpace: AVMetadataKeySpace(rawValue: "itsk"))
+            let genItems = AVMetadataItem.metadataItems(from: metadata, withKey: "©gen", keySpace: .iTunes)
             if let first = genItems.first, let data = first.stringValue {
                 movie.genres = data
             }
@@ -80,6 +79,6 @@ extension Movie {
             }
             result.append(movie)
         }
-        return result
+		return result.sorted(by: { $0.title < $1.title })
     }
 }
