@@ -11,13 +11,28 @@ import AVKit
 import AmplitudeLite
 
 extension TVShowDetail: UITableViewDelegate, UITableViewDataSource {
+	func numberOfSections(in tableView: UITableView) -> Int {
+		seasons.count
+	}
+	
+	func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+		guard seasons.count > 1 else { return nil }
+		
+		let titleLabel = UILabel()
+		titleLabel.font = .preferredFont(forTextStyle: .headline)
+		titleLabel.textColor = ColorCompatibility.label
+		titleLabel.backgroundColor = ColorCompatibility.systemBackground
+		titleLabel.text = "Season \(seasons[section].seasonNumber)"
+		return titleLabel
+	}
+	
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if currentShow.episodes.isEmpty {
             tableView.backgroundView = EmptyView().setup(title: "No Episodes", subtitle: "")
         } else {
             tableView.backgroundView = nil
         }
-        return currentShow.episodes.count
+		return seasons[section].episodes.count
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -32,11 +47,9 @@ extension TVShowDetail: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath)
-        let episode = currentShow.episodes[indexPath.row]
-        cell.textLabel?.text = "\(episode.number). \(episode.title)"
-        cell.detailTextLabel?.text = "\(episode.duration) min"
-        self.tableView.rowHeight = 50.0
+		let cell = tableView.dequeueReusableCell(withIdentifier: TVEpisodeTableViewCell.reuseIdentifier, for: indexPath) as! TVEpisodeTableViewCell
+		let episode = seasons[indexPath.section].episodes[indexPath.row]
+		cell.setup(with: episode)
         return cell
     }
     

@@ -14,17 +14,27 @@ class TVShowDetail: UIViewController {
     @IBOutlet var cover: UIImageView!
     @IBOutlet var descLbl: UILabel!
     @IBOutlet var tableView: UITableView!
-    var currentShow = TVShow()
+	
+	var currentShow: TVShow!
+	
+	private(set) var seasons = [Season]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.title = currentShow.title
         cover.image = currentShow.artwork
+		cover.addCornerRadius()
         descLbl.text = currentShow.description
         
-        currentShow.episodes.sort(by: {$0.number < $1.number})
+		seasons = Dictionary(grouping: currentShow.episodes, by: { $0.seasonNumber })
+			.map({ Season(seasonNumber: $0, episodes: $1.sorted(by: { $0.episodeNumber < $1.episodeNumber })) })
+			.sorted(by: { $0.seasonNumber < $1.seasonNumber })
+		
         tableView.tableFooterView = UIView()
+		tableView.rowHeight = UITableView.automaticDimension
+		tableView.estimatedRowHeight = 50
+		tableView.register(TVEpisodeTableViewCell.self, forCellReuseIdentifier: TVEpisodeTableViewCell.reuseIdentifier)
 		
 		let deleteButton = UIButton()
 		deleteButton.setImage(#imageLiteral(resourceName: "Trash"), for: .normal)
