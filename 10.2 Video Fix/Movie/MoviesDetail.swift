@@ -20,12 +20,15 @@ class MoviesDetail: UIViewController {
     @IBOutlet var direcLbl: UILabel!
     @IBOutlet var screenwrLbl: UILabel!
     @IBOutlet var playButton: UIButton!
-    var currentMovie = Movie()
-	    
+	@IBOutlet var trashButton: UIButton!
+	
+	var currentMovie: Movie!
+	
     override func viewDidLoad() {
         super.viewDidLoad()
         setLables()
-        
+		trashButton.isHidden = UIAccessibility.isGuidedAccessEnabled
+		
         if #available(iOS 13.4, *) {
             playButton.pointerStyleProvider = { (button, _, _) in
                 let targetPreview = UITargetedPreview(view: button)
@@ -33,6 +36,10 @@ class MoviesDetail: UIViewController {
             }
         }
         Analytics.shared.trackEvent(.screenView, properties: [.screenName: "movie-details"])
+		
+		NotificationCenter.default.addObserver(forName: UIAccessibility.guidedAccessStatusDidChangeNotification, object: nil, queue: .main) { [weak self] _ in
+			self?.trashButton.isHidden = UIAccessibility.isGuidedAccessEnabled
+		}
     }
     
     func setLables() {

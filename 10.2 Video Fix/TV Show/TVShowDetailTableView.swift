@@ -21,41 +21,13 @@ extension TVShowDetail: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
+        return !UIAccessibility.isGuidedAccessEnabled
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if(editingStyle == .delete) {
-			let episode = self.currentShow.episodes[indexPath.row]
-			
-			let alertController = UIAlertController(title: "Delete \(episode.title)", message: "Are you sure you want to delete this episode? To re-add it you will have to copy it from your computer again.", preferredStyle: .alert)
-            
-            let deleteAction = UIAlertAction(title: "Delete", style: UIAlertAction.Style.destructive) { [weak self] _ in
-				guard let self = self else { return }
-                do {
-					try FileManager().removeItem(at: episode.url)
-					UserDefaults.standard.removeTime(forKey: self.documentsPath(of: episode.url))
-                    Analytics.shared.trackEvent(.interaction, properties: [.type: "delete-tv-show-episode"])
-                    self.currentShow.episodes.remove(at: indexPath.row)
-                    tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
-                    tableView.reloadData()
-                    
-                    if(self.currentShow.episodes.isEmpty) {
-                        try FileManager().removeItem(at: self.currentShow.url)
-                        self.navigationController?.popViewController(animated: true)
-                    }
-                } catch {
-                    print(error.localizedDescription)
-                }
-            }
-            
-            let cancelAction = UIAlertAction(title: "Cancel", style: .default) {
-                (result : UIAlertAction) -> Void in
-            }
-            
-            alertController.addAction(deleteAction)
-            alertController.addAction(cancelAction)
-            self.present(alertController, animated: true, completion: nil)
+		if editingStyle == .delete {
+			let episode = self.seasons[indexPath.section].episodes[indexPath.row]
+			presentDeleteConfirmation(for: episode, at: indexPath)
         }
     }
     
@@ -68,9 +40,40 @@ extension TVShowDetail: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         Analytics.shared.trackEvent(.interaction, properties: [.type: "play-tv-show-episode"])
         self.presentPlayer(with: currentShow.episodes[indexPath.row].url)
     }
+	
+	private func presentDeleteConfirmation(for episode: TVEpisode, at indexPath: IndexPath) {
+		let alertController = UIAlertController(title: "Delete \(episode.title)", message: "Are you sure you want to delete this episode? To re-add it you will have to copy it from your computer again.", preferredStyle: .alert)
+		
+		let deleteAction = UIAlertAction(title: "Delete", style: UIAlertAction.Style.destructive) { [weak self] _ in
+			guard let self = self else { return }
+			do {
+				try FileManager().removeItem(at: episode.url)
+				UserDefaults.standard.removeTime(forKey: self.documentsPath(of: episode.url))
+				Analytics.shared.trackEvent(.interaction, properties: [.type: "delete-tv-show-episode"])
+				self.currentShow.episodes.remove(at: indexPath.row)
+				self.tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
+				self.tableView.reloadData()
+				
+				if(self.currentShow.episodes.isEmpty) {
+					try FileManager().removeItem(at: self.currentShow.url)
+					self.navigationController?.popViewController(animated: true)
+				}
+			} catch {
+				print(error.localizedDescription)
+			}
+		}
+		
+		let cancelAction = UIAlertAction(title: "Cancel", style: .default) {
+			(result : UIAlertAction) -> Void in
+		}
+		
+		alertController.addAction(deleteAction)
+		alertController.addAction(cancelAction)
+		self.present(alertController, animated: true, completion: nil)
+	}
 }

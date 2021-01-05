@@ -37,8 +37,13 @@ class TVShowDetail: UIViewController {
 			deleteButton.heightAnchor.constraint(equalToConstant: 28)
 		])
 		navigationItem.rightBarButtonItem = UIBarButtonItem(customView: deleteButton)
+		deleteButton.isHidden = UIAccessibility.isGuidedAccessEnabled
         
         Analytics.shared.trackEvent(.screenView, properties: [.screenName: "tv-show-details"])
+		
+		NotificationCenter.default.addObserver(forName: UIAccessibility.guidedAccessStatusDidChangeNotification, object: nil, queue: .main) { [weak deleteButton] _ in
+			deleteButton?.isHidden = UIAccessibility.isGuidedAccessEnabled
+		}
     }
 	
 	@objc func deleteShow() {
