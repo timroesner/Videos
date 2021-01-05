@@ -19,7 +19,7 @@ extension TVShowOverviewController: UICollectionViewDelegate, UICollectionViewDa
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "showCell", for: indexPath) as! TVShowOverviewCollectionViewCell
+		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TVShowOverviewCollectionViewCell.reuseIdentifier, for: indexPath) as! TVShowOverviewCollectionViewCell
         let currentShow = shows[indexPath.row]
         cell.setup(with: currentShow)
         return cell

@@ -13,14 +13,12 @@ extension TVShowOverviewController: UICollectionViewDelegateFlowLayout {
         let availableWidth = collectionView.frame.width
         
         let width: CGFloat
-        if traitCollection.horizontalSizeClass == .compact,
-        traitCollection.verticalSizeClass == .regular {
+        if traitCollection.horizontalSizeClass == .compact, traitCollection.verticalSizeClass == .regular {
             width = (availableWidth - 48) / 3
         } else {
             width = (availableWidth - 72) / 5
         }
-        let height = width * 1.14
-        return CGSize(width: width, height: height)
+		return TVShowOverviewCollectionViewCell.layoutSize(withRequiredWidth: width)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {

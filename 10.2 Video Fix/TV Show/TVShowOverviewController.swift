@@ -38,6 +38,8 @@ class TVShowOverviewController: UIViewController, UISearchResultsUpdating {
 			navigationItem.searchController = searchController
         }
 		extendedLayoutIncludesOpaqueBars = true
+		
+		collectionView.register(TVShowOverviewCollectionViewCell.self, forCellWithReuseIdentifier: TVShowOverviewCollectionViewCell.reuseIdentifier)
     }
 
     override func viewDidAppear(_ animated: Bool) {

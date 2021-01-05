@@ -45,6 +45,7 @@ class MoviesDetail: UIViewController {
     func setLables() {
         self.title = currentMovie.title
         cover.image = currentMovie.artwork
+		cover.addCornerRadius()
         subtitleLbl.text = "\(currentMovie.duration)m    \(currentMovie.year)    \(currentMovie.genres)"
         descLbl.text = currentMovie.description
         castLbl.attributedText = createParagraphs(array: currentMovie.cast, headline: "Cast")
