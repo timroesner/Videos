@@ -40,6 +40,8 @@ class MovieOverviewController: UIViewController, UISearchResultsUpdating {
 			navigationItem.searchController = searchController
 		}
 		extendedLayoutIncludesOpaqueBars = true
+		
+		collectionView.register(MovieOverviewCollectionViewCell.self, forCellWithReuseIdentifier: MovieOverviewCollectionViewCell.reuseIdentifier)
     }
     
     override func viewDidAppear(_ animated: Bool) {
