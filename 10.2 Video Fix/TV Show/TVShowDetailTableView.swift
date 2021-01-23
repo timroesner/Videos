@@ -69,6 +69,7 @@ extension TVShowDetail: UITableViewDelegate, UITableViewDataSource {
 				UserDefaults.standard.removeTime(forKey: self.documentsPath(of: episode.url))
 				Analytics.shared.trackEvent(.interaction, properties: [.type: "delete-tv-show-episode"])
 				self.currentShow.episodes.remove(at: indexPath.row)
+				self.updateSeasonsSorting()
 				self.tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
 				self.tableView.reloadData()
 				

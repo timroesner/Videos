@@ -26,10 +26,8 @@ class TVShowDetail: UIViewController {
         cover.image = currentShow.artwork
 		cover.addCornerRadius()
         descLbl.text = currentShow.description
-        
-		seasons = Dictionary(grouping: currentShow.episodes, by: { $0.seasonNumber })
-			.map({ Season(seasonNumber: $0, episodes: $1.sorted(by: { $0.episodeNumber < $1.episodeNumber })) })
-			.sorted(by: { $0.seasonNumber < $1.seasonNumber })
+		
+		updateSeasonsSorting()
 		
         tableView.tableFooterView = UIView()
 		tableView.rowHeight = UITableView.automaticDimension
@@ -55,6 +53,12 @@ class TVShowDetail: UIViewController {
 			deleteButton?.isHidden = UIAccessibility.isGuidedAccessEnabled
 		}
     }
+	
+	func updateSeasonsSorting() {
+		seasons = Dictionary(grouping: currentShow.episodes, by: { $0.seasonNumber })
+			.map({ Season(seasonNumber: $0, episodes: $1.sorted(by: { $0.episodeNumber < $1.episodeNumber })) })
+			.sorted(by: { $0.seasonNumber < $1.seasonNumber })
+	}
 	
 	@objc func deleteShow() {
 		let alertController = UIAlertController(title: "Delete \(currentShow.title)", message: "Are you sure you want to delete this show? To re-add it you will have to copy it from your computer again.", preferredStyle: .alert)
