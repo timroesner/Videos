@@ -71,8 +71,7 @@ class TVEpisodeTableViewCell: UITableViewCell {
 		
 		let asset = AVURLAsset(url: url, options: nil)
 		let imgGenerator = AVAssetImageGenerator(asset: asset)
-		let thumbnailTime = CMTime(seconds: asset.duration.seconds < 25.0 ? 5.0 : 25.0, preferredTimescale: 1)
-		imgGenerator.generateCGImagesAsynchronously(forTimes: [NSValue(time: thumbnailTime)]) { [weak self] _, cgImage, _, _, error in
+		imgGenerator.generateCGImagesAsynchronously(forTimes: [NSValue(time: CMTime(seconds: asset.duration.seconds / 4, preferredTimescale: 1))]) { [weak self] _, cgImage, _, _, error in
 			if let error = error {
 				print(error.localizedDescription)
 			}
