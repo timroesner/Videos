@@ -23,7 +23,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Analytics
 		Analytics.shared.configure(withAPIKey: Credentials.analyticsKey)
         Analytics.shared.trackEvent(.appStart, includeDeviceInfo: true)
-        Analytics.shared.trackEvent(.accessibilitySettings, properties: Analytics.accessibilityProperties)
+        // Workaround for a crash on iOS 10.3.3
+        if #available(iOS 11.0, *) {
+            Analytics.shared.trackEvent(.accessibilitySettings, properties: Analytics.accessibilityProperties)
+        }
         
         return true
     }

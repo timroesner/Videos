@@ -65,12 +65,12 @@ extension TVShowDetail: UITableViewDelegate, UITableViewDataSource {
 		let deleteAction = UIAlertAction(title: "Delete", style: UIAlertAction.Style.destructive) { [weak self] _ in
 			guard let self = self else { return }
 			do {
+				guard let episodeIndex = self.currentShow.episodes.firstIndex(where: { $0.url == episode.url }) else { return }
 				try FileManager().removeItem(at: episode.url)
 				UserDefaults.standard.removeTime(forKey: self.documentsPath(of: episode.url))
 				Analytics.shared.trackEvent(.interaction, properties: [.type: "delete-tv-show-episode"])
-				self.currentShow.episodes.remove(at: indexPath.row)
+				self.currentShow.episodes.remove(at: episodeIndex)
 				self.updateSeasonsSorting()
-				self.tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
 				self.tableView.reloadData()
 				
 				if(self.currentShow.episodes.isEmpty) {
