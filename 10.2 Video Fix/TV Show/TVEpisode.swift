@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct TVEpisode {
+struct TVEpisode: Hashable {
     var title = ""
 	var description = ""
     var episodeNumber = 0
@@ -17,7 +17,7 @@ struct TVEpisode {
     var duration = 0
 }
 
-struct Season {
+struct Season: Hashable {
 	var seasonNumber: Int
 	var episodes: [TVEpisode]
 }

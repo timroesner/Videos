@@ -56,7 +56,15 @@ extension TVShowDetail: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         Analytics.shared.trackEvent(.interaction, properties: [.type: "play-tv-show-episode"])
-        self.presentPlayer(with: currentShow.episodes[indexPath.row].url)
+        let episode = seasons[indexPath.section].episodes[indexPath.row]
+        let autoplayURLs = seasons[indexPath.section...].flatMap { season -> [URL] in
+            if season == seasons[indexPath.section] {
+                return season.episodes[(indexPath.row + 1)...].map(\.url)
+            } else {
+                return season.episodes.map(\.url)
+            }
+        }
+        self.presentPlayer(with: episode.url, autoplayURLs: autoplayURLs)
     }
 	
 	private func presentDeleteConfirmation(for episode: TVEpisode, at indexPath: IndexPath) {
