@@ -8,11 +8,123 @@
 
 import AVKit
 
+// MARK: - PlayerViewController
+
+final class PlayerViewController: AVPlayerViewController {
+    let autoplayURLs: [URL]?
+    
+    private var currentEpisodeIndex: Int = 0
+    private var timeObserverToken: Any?
+    
+    private lazy var nextEpisodeButton: UIButton = {
+        let button = UIButton()
+        button.setTitle(NSLocalizedString("Next Episode", comment: ""), for: .normal)
+        button.backgroundColor = .darkGray
+        button.layer.cornerRadius = 8
+        button.addTarget(self, action: #selector(playNextEpisode), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    override var player: AVPlayer? {
+        didSet {
+            addNextEpisodeObservers()
+        }
+    }
+    
+    init(autoplayURLs: [URL]?) {
+        self.autoplayURLs = autoplayURLs
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    deinit {
+        removeTimeObserver()
+    }
+    
+    private func addNextEpisodeObservers() {
+        guard let player = player, let asset = player.currentItem?.asset,
+              let autoplayURLs = autoplayURLs, currentEpisodeIndex < autoplayURLs.count else { return }
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(timeJumped), name: .AVPlayerItemTimeJumped, object: player.currentItem)
+        
+        let endCreditsLength = self.endCreditsLength(for: asset)
+        let creditsTime = asset.duration - CMTime(seconds: endCreditsLength, preferredTimescale: asset.duration.timescale)
+        timeObserverToken = player.addBoundaryTimeObserver(forTimes: [NSValue(time: creditsTime)], queue: .main) { [weak self] in
+            self?.setupNextEpisodeButton()
+        }
+        
+        player.actionAtItemEnd = .none
+        NotificationCenter.default.addObserver(self, selector: #selector(playNextEpisode), name: .AVPlayerItemDidPlayToEndTime, object: player.currentItem)
+    }
+    
+    private func endCreditsLength(for asset: AVAsset) -> TimeInterval {
+        switch asset.duration.seconds {
+        case 0..<35 * .minute: return 30
+        case 35 * .minute..<65 * .minute: return 75
+        case 65 * .minute..<95 * .minute: return 120
+        default: return 180
+        }
+    }
+    
+    private func setupNextEpisodeButton() {
+        guard nextEpisodeButton.superview == nil else {
+            nextEpisodeButton.isHidden = false
+            return
+        }
+        
+        view.addSubview(nextEpisodeButton)
+        
+        NSLayoutConstraint.activate([
+            nextEpisodeButton.heightAnchor.constraint(greaterThanOrEqualToConstant: 44),
+            nextEpisodeButton.widthAnchor.constraint(greaterThanOrEqualToConstant: 175),
+            view.trailingAnchor.constraint(equalTo: nextEpisodeButton.trailingAnchor, constant: 16),
+            view.bottomAnchor.constraint(equalTo: nextEpisodeButton.bottomAnchor, constant: 16),
+        ])
+    }
+    
+    private func removeTimeObserver() {
+        guard let timeObserverToken = timeObserverToken else { return }
+        player?.removeTimeObserver(timeObserverToken)
+        self.timeObserverToken = nil
+        nextEpisodeButton.isHidden = true
+    }
+    
+    @objc private func timeJumped() {
+        guard let currentPlaybackTime = player?.currentTime(), let asset = player?.currentItem?.asset else { return }
+        
+        let timeRemaining = asset.duration - currentPlaybackTime
+        let endCreditsTime = CMTime(seconds: endCreditsLength(for: asset), preferredTimescale: asset.duration.timescale)
+        guard timeRemaining < endCreditsTime else {
+            nextEpisodeButton.isHidden = true
+            return
+        }
+        // Current time is smaller than end credits time, so we display the next episode button
+        setupNextEpisodeButton()
+    }
+    
+    @objc private func playNextEpisode() {
+        guard let autoplayURLs = autoplayURLs else { return }
+        let newItem = AVPlayerItem(url: autoplayURLs[currentEpisodeIndex])
+        player?.replaceCurrentItem(with: newItem)
+        currentEpisodeIndex += 1
+        
+        nextEpisodeButton.isHidden = true
+        removeTimeObserver()
+        addNextEpisodeObservers()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
+// MARK: - AVPlayerViewControllerDelegate
+
 extension UIViewController: AVPlayerViewControllerDelegate {
-	func presentPlayer(with url: URL) {
-        let playerVC = AVPlayerViewController()
+    func presentPlayer(with url: URL, autoplayURLs: [URL]? = nil) {
+        let playerVC = PlayerViewController(autoplayURLs: autoplayURLs)
         playerVC.delegate = self
-		
+        
         let player = AVPlayer(url: url)
 		timeRestoration(for: url, with: player)
 		playerVC.player = player
@@ -73,4 +185,8 @@ extension UserDefaults {
 		removeObject(forKey: key + ".seconds")
 		removeObject(forKey: key + ".timescale")
 	}
+}
+
+extension TimeInterval {
+    static let minute: TimeInterval = 60
 }
