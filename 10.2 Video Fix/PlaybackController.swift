@@ -16,14 +16,40 @@ final class PlayerViewController: AVPlayerViewController {
     private var currentEpisodeIndex: Int = 0
     private var timeObserverToken: Any?
     
+    private lazy var nextButtonBottomConstraint: NSLayoutConstraint = {
+        if #available(iOS 11.0, *) {
+            return view.safeAreaLayoutGuide.bottomAnchor.constraint(equalTo: nextEpisodeButton.bottomAnchor, constant: 12)
+        } else {
+            return view.bottomAnchor.constraint(equalTo: nextEpisodeButton.bottomAnchor, constant: 12)
+        }
+    }()
+    
     private lazy var nextEpisodeButton: UIButton = {
-        let button = UIButton()
-        button.setTitle(NSLocalizedString("Next Episode", comment: ""), for: .normal)
-        button.backgroundColor = .darkGray
-        button.layer.cornerRadius = 8
-        button.addTarget(self, action: #selector(playNextEpisode), for: .touchUpInside)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
+        if #available(iOS 15.0, *) {
+            var config = UIButton.Configuration.plain()
+            config.title = NSLocalizedString("Next Episode", comment: "")
+            config.buttonSize = .medium
+            config.baseForegroundColor = .white
+            var backgroundConfig = UIBackgroundConfiguration.clear()
+            backgroundConfig.visualEffect = UIBlurEffect(style: .systemUltraThinMaterialDark)
+            backgroundConfig.cornerRadius = 16
+            config.background = backgroundConfig
+            let button = UIButton(configuration: config, primaryAction: UIAction { [weak self] _ in
+                self?.playNextEpisode()
+            })
+            button.translatesAutoresizingMaskIntoConstraints = false
+            return button
+        } else {
+            let button = UIButton()
+            button.setTitle(NSLocalizedString("Next Episode", comment: ""), for: .normal)
+            button.setTitleColor(.white, for: .normal)
+            button.setTitleColor(.white.withAlphaComponent(0.65), for: .highlighted)
+            button.backgroundColor = .darkGray.withAlphaComponent(0.75)
+            button.layer.cornerRadius = 16
+            button.addTarget(self, action: #selector(playNextEpisode), for: .touchUpInside)
+            button.translatesAutoresizingMaskIntoConstraints = false
+            return button
+        }
     }()
     
     override var player: AVPlayer? {
@@ -41,11 +67,20 @@ final class PlayerViewController: AVPlayerViewController {
         removeTimeObserver()
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        if view.frame.height < view.frame.width {
+            nextButtonBottomConstraint.constant = 12
+        } else {
+            nextButtonBottomConstraint.constant = 68
+        }
+    }
+    
     private func addNextEpisodeObservers() {
         guard let player = player, let asset = player.currentItem?.asset,
               let autoplayURLs = autoplayURLs, currentEpisodeIndex < autoplayURLs.count else { return }
         
-        NotificationCenter.default.addObserver(self, selector: #selector(timeJumped), name: .AVPlayerItemTimeJumped, object: player.currentItem)
+        NotificationCenter.default.addObserver(self, selector: #selector(timeJumped), name: AVPlayerItem.timeJumpedNotification, object: player.currentItem)
         
         let endCreditsLength = self.endCreditsLength(for: asset)
         let creditsTime = asset.duration - CMTime(seconds: endCreditsLength, preferredTimescale: asset.duration.timescale)
@@ -73,12 +108,13 @@ final class PlayerViewController: AVPlayerViewController {
         }
         
         view.addSubview(nextEpisodeButton)
+        nextEpisodeButton.isHidden = false
         
         NSLayoutConstraint.activate([
-            nextEpisodeButton.heightAnchor.constraint(greaterThanOrEqualToConstant: 44),
-            nextEpisodeButton.widthAnchor.constraint(greaterThanOrEqualToConstant: 175),
-            view.trailingAnchor.constraint(equalTo: nextEpisodeButton.trailingAnchor, constant: 16),
-            view.bottomAnchor.constraint(equalTo: nextEpisodeButton.bottomAnchor, constant: 16),
+            nextEpisodeButton.heightAnchor.constraint(greaterThanOrEqualToConstant: 48),
+            nextEpisodeButton.widthAnchor.constraint(greaterThanOrEqualToConstant: 146),
+            view.trailingAnchor.constraint(equalTo: nextEpisodeButton.trailingAnchor, constant: 24),
+            nextButtonBottomConstraint,
         ])
     }
     
@@ -124,6 +160,9 @@ extension UIViewController: AVPlayerViewControllerDelegate {
     func presentPlayer(with url: URL, autoplayURLs: [URL]? = nil) {
         let playerVC = PlayerViewController(autoplayURLs: autoplayURLs)
         playerVC.delegate = self
+        if #available(iOS 14.2, *) {
+            playerVC.canStartPictureInPictureAutomaticallyFromInline = true
+        }
         
         let player = AVPlayer(url: url)
 		timeRestoration(for: url, with: player)
