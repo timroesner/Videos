@@ -44,14 +44,14 @@ class TVEpisodeTableViewCell: UITableViewCell {
 		
 		NSLayoutConstraint.activate([
 			thumbnail.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
-			thumbnail.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+			thumbnail.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
 			contentView.bottomAnchor.constraint(greaterThanOrEqualTo: thumbnail.bottomAnchor, constant: 8),
 			thumbnail.widthAnchor.constraint(equalTo: thumbnail.heightAnchor, multiplier: 16/9),
 			thumbnail.heightAnchor.constraint(equalToConstant: 75),
 			
 			detailsStack.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
 			detailsStack.leadingAnchor.constraint(equalTo: thumbnail.trailingAnchor, constant: 12),
-			contentView.trailingAnchor.constraint(equalTo: detailsStack.trailingAnchor, constant: 8),
+			contentView.trailingAnchor.constraint(equalTo: detailsStack.trailingAnchor, constant: 16),
 			contentView.bottomAnchor.constraint(greaterThanOrEqualTo: detailsStack.bottomAnchor, constant: 8),
 		])
 	}

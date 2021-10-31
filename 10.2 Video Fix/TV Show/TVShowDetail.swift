@@ -33,6 +33,10 @@ class TVShowDetail: UIViewController {
 		tableView.rowHeight = UITableView.automaticDimension
 		tableView.estimatedRowHeight = 50
 		tableView.register(TVEpisodeTableViewCell.self, forCellReuseIdentifier: TVEpisodeTableViewCell.reuseIdentifier)
+        
+        if #available(iOS 15.0, *) {
+            tableView.sectionHeaderTopPadding = 0
+        }
 		
 		let deleteButton = UIButton()
 		deleteButton.setImage(#imageLiteral(resourceName: "Trash"), for: .normal)
