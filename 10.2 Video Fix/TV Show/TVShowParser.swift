@@ -14,7 +14,7 @@ extension TVShow {
         var result = [TVShow]()
         for var url in collection {
             let directoryContents = try? FileManager.default.contentsOfDirectory(at: url, includingPropertiesForKeys: nil, options: [])
-            let currentShow = directoryContents?.filter{ $0.pathExtension == "mp4" || $0.pathExtension == "m4v" || $0.pathExtension == "mov"} ?? []
+            let currentShow = directoryContents?.filter{ $0.pathExtension.lowercased() == "mp4" || $0.pathExtension.lowercased() == "m4v" || $0.pathExtension.lowercased() == "mov"} ?? []
             
 			guard !currentShow.isEmpty else { continue }
 			
