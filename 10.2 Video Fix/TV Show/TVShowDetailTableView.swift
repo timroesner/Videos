@@ -14,17 +14,21 @@ extension TVShowDetail: UITableViewDelegate, UITableViewDataSource {
 	func numberOfSections(in tableView: UITableView) -> Int {
 		seasons.count
 	}
-	
-	func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-		guard seasons.count > 1 else { return nil }
-		
-		let titleLabel = UILabel()
-		titleLabel.font = .preferredFont(forTextStyle: .headline)
-		titleLabel.textColor = ColorCompatibility.label
-		titleLabel.backgroundColor = ColorCompatibility.systemBackground
-		titleLabel.text = "Season \(seasons[section].seasonNumber)"
-		return titleLabel
-	}
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        guard seasons.count > 1 else { return nil }
+        return "Season \(seasons[section].seasonNumber)"
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        guard let headerView = view as? UITableViewHeaderFooterView else { return }
+        headerView.textLabel?.font = .preferredFont(forTextStyle: .headline)
+        if #available(iOS 13.0, *) {
+            headerView.textLabel?.textColor = .label
+        } else {
+            headerView.textLabel?.textColor = .black
+        }
+    }
 	
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if currentShow.episodes.isEmpty {
